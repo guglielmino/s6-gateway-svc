@@ -24,8 +24,9 @@
     "sinon": "^1.17.6"
   },
   "dependencies": {
+    "daemon": "^1.1.0",
     "mqtt": "^2.0.1",
     "pubnub": "^4.2.5",
-    "ws": "^1.1.1"
+    "winston": "^2.3.0"
   }
 }

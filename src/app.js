@@ -1,7 +1,6 @@
 import config from './config';
 
 import mqtt from 'mqtt';
-import WebSocket from 'ws';
 import PubNub from 'pubnub';
 
 const client = mqtt.connect(config.mqtt_url);
@@ -48,21 +47,6 @@ pubnub.subscribe({
 });
 
 // -- PubNub
-
-// -- WebSockets
-/*ws.on('open', function open() {
-	ws.send(JSON.stringify({ topic: 'ws/test', message: 'prova' }));
-});
-
-ws.on('message', function (data, flags) {
-	// flags.binary will be set if a binary data is received.
-	// flags.masked will be set if the data was masked.
-	console.log(`ws data ${data}`);
-	const payload = JSON.parse(data);
-	client.publish(payload.topic, payload.message);
-});
-*/
-// --WebSockets
 
 // -- MQTT
 client.on('connect', function () {
