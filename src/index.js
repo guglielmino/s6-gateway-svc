@@ -13,6 +13,7 @@ import logger from './logger';
 function onSrvConnect() {
 	console.log("Connect!");
 	mqttHandler.subscribe('cmnd/#');
+	mqttHandler.subscribe('stat/#');
 }
 
 /**
@@ -21,7 +22,7 @@ function onSrvConnect() {
  * @param message
  */
 function onDeviceMessage(msg) {
-
+	logger.log('debug', JSON.stringify(msg));
 }
 
 /**
@@ -48,6 +49,6 @@ logger.log('info', 'starting up...');
 pubNubHandler.subscribe('commands');
 pubNubHandler.on(consts.NEVENT_MESSAGE, onNetworkMessage);
 
-mqttHandler.subscribe('test/topic');
 mqttHandler.on(consts.DEVENT_SRV_CONNECT, onSrvConnect);
 mqttHandler.on(consts.DEVENT_DEV_MESSAGE, onDeviceMessage);
+mqttHandler.subscribe('tele/#');

@@ -9,6 +9,7 @@ export default function(config) {
 	const client = mqtt.connect(config.mqtt.url);
 	const eventEmitter = new EventEmitter();
 
+	logger.log('info', `starting MQTT on ${config.mqtt.url}`);
 	client.on('connect', function () {
 		logger.log('debug', 'connect');
 		eventEmitter.emit(consts.DEVENT_SRV_CONNECT);
@@ -35,6 +36,5 @@ export default function(config) {
 		on(key, fn) {
 			eventEmitter.on(key, fn);
 		}
-
 	}
 }

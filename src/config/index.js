@@ -1,6 +1,6 @@
 let config = {
 	mqtt: {
-		url: process.env.MQTT_URL || 'mqtt://localhost'
+		url: process.env.MQTT_URL || 'mqtt://127.0.0.1'
 	},
 	pubnub: {
 		publishKey: process.env.PUBNUB_PKEY || "pub-c-1e94a42c-af1d-432f-acc6-df8b5f64c22f",
