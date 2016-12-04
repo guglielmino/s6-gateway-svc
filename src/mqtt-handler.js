@@ -15,6 +15,11 @@ export default function(config) {
 		eventEmitter.emit(consts.DEVENT_SRV_CONNECT);
 	});
 
+	client.on('error', function (err) {
+		logger.log('debug', `error ${err}`);
+		eventEmitter.emit(consts.DEVENT_SRV_ERROR);
+	});
+
 	client.on('message', function (topic, message) {
 		logger.log('debug', 'message', { topic, message });
 		eventEmitter.emit(consts.DEVENT_DEV_MESSAGE, { topic: topic, message: message.toString() });

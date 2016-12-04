@@ -4,8 +4,14 @@
 import * as consts from './consts';
 import MqttHanlder from './mqtt-handler';
 import PubNubHandler from './pubnub-handler';
+import MQTTHub from './hubs/mqtt-hub';
+import { handlers } from './mqtt-bootstrap';
 import config from './config';
 import logger from './logger';
+
+
+const mqttHub = MQTTHub(handlers);
+
 
 /**
  * Event fired when MQTT server connection is ready
@@ -22,7 +28,7 @@ function onSrvConnect() {
  * @param message
  */
 function onDeviceMessage(msg) {
-	logger.log('debug', JSON.stringify(msg));
+	mqttHub.handleMsg(msg);
 }
 
 /**
