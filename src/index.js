@@ -5,12 +5,9 @@ import * as consts from './consts';
 import MqttHanlder from './mqtt-handler';
 import PubNubHandler from './pubnub-handler';
 import MQTTHub from './hubs/mqtt-hub';
-import { handlers } from './mqtt-bootstrap';
+import MQTTBridge from './mqtt-bridge';
 import config from './config';
 import logger from './logger';
-
-
-const mqttHub = MQTTHub(handlers);
 
 
 /**
@@ -50,9 +47,18 @@ function onNetworkMessage(msg) {
 const pubNubHandler = PubNubHandler(config);
 const mqttHandler = MqttHanlder(config);
 
+let pubNubPublish = function(channel) {
+	return function(message) {
+		return pubNubHandler.publish(channel, message);
+	}
+};
+
+const handlers = MQTTBridge(pubNubPublish(config.pubnub.channel));
+const mqttHub = MQTTHub(handlers);
 
 logger.log('info', 'starting up...');
-pubNubHandler.subscribe('commands');
+logger.log('info', `PubNub channel ${config.pubnub.channel}`);
+pubNubHandler.subscribe(config.pubnub.channel);
 pubNubHandler.on(consts.NEVENT_MESSAGE, onNetworkMessage);
 
 mqttHandler.on(consts.DEVENT_SRV_CONNECT, onSrvConnect);
