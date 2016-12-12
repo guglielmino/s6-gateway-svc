@@ -10,17 +10,19 @@ export default function(config) {
 	const eventEmitter = new EventEmitter();
 
 	logger.log('info', `starting MQTT on ${config.mqtt.url}`);
+
 	client.on('connect', function () {
 		logger.log('debug', 'connect');
 		eventEmitter.emit(consts.DEVENT_SRV_CONNECT);
 	});
 
 	client.on('error', function (err) {
-		logger.log('debug', `error ${err}`);
+		logger.log('error', `error ${err}`);
 		eventEmitter.emit(consts.DEVENT_SRV_ERROR);
 	});
 
-	client.on('message', function (topic, message) {
+	client.on('message', function (topic, message, packet) {
+
 		logger.log('debug', 'message', { topic, message });
 		eventEmitter.emit(consts.DEVENT_DEV_MESSAGE, { topic: topic, message: message.toString() });
 	});

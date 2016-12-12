@@ -43,15 +43,26 @@ On the other side it subscribes MQTT topics, receive messages and translates the
                                         |T|
 
 
-### Custom messages
+## Custom messages
 
-This is a list of custom messages 
+This is a list of custom messages sent and received to/from Web Dashboard.
 
+#### Energy 
+
+This message is sent from devices to give feedback on consumption and other enery parameters.
 
         {
-            type: "MQTT",
-            payload: {
-                topic: "cmnd/device/POWER
-            }
+          "type": "ENERGY",
+          "payload": {
+            "Topic": "tele/sonoff/TELEMETRY",
+            "Yesterday": "0.000",
+            "Today": "0.000",
+            "Period": 0,
+            "Power": 0,
+            "Factor": "0.00",
+            "Voltage": 0,
+            "Current": "0.000",
+            "Time": "2016-12-10T15:08:42"
+          }
         }
 

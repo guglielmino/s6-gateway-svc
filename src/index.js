@@ -8,6 +8,7 @@ import MQTTHub from './hubs/mqtt-hub';
 import MQTTBridge from './mqtt-bridge';
 import config from './config';
 import logger from './logger';
+import _ from 'lodash';
 
 
 /**
@@ -15,8 +16,7 @@ import logger from './logger';
  */
 function onSrvConnect() {
 	console.log("Connect!");
-	mqttHandler.subscribe('cmnd/#');
-	mqttHandler.subscribe('stat/#');
+	_.dropRight(config.mqtt.subscribe).forEach(topic => { logger.log('debug', `MQTT subscribe ${topic}`); mqttHandler.subscribe(topic) });
 }
 
 /**
@@ -56,11 +56,11 @@ let pubNubPublish = function(channel) {
 const handlers = MQTTBridge(pubNubPublish(config.pubnub.channel));
 const mqttHub = MQTTHub(handlers);
 
-logger.log('info', 'starting up...');
-logger.log('info', `PubNub channel ${config.pubnub.channel}`);
+
+logger.log('info', `PubNub channel '${config.pubnub.channel}'`);
 pubNubHandler.subscribe(config.pubnub.channel);
 pubNubHandler.on(consts.NEVENT_MESSAGE, onNetworkMessage);
-
 mqttHandler.on(consts.DEVENT_SRV_CONNECT, onSrvConnect);
 mqttHandler.on(consts.DEVENT_DEV_MESSAGE, onDeviceMessage);
-mqttHandler.subscribe('tele/#');
+logger.log('info', 'starting up...');
+mqttHandler.subscribe(_.last(config.mqtt.subscribe));

@@ -10,5 +10,6 @@ export const NEVENT_STATUS 		=	'net-status';
 export const NEVENT_PRESENCE	=	'net-presence';
 
 // Commands
-export const CMD_CONSUMPTION = 'CONSUMPTION';
+export const CMD_ENERGY = 'ENERGY';
+export const CMD_INFO = 'INFO';
 export const CMD_DEVICE_LIST = 'DEVICE_LIST';
