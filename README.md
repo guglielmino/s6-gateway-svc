@@ -54,7 +54,7 @@ This message is sent from devices to give feedback on consumption and other ener
         {
           "type": "ENERGY",
           "payload": {
-            "Topic": "tele/sonoff/TELEMETRY",
+            "DeviceId": "tele/sonoff/TELEMETRY",
             "Yesterday": "0.000",
             "Today": "0.000",
             "Period": 0,
