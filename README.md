@@ -52,6 +52,7 @@ This is a list of custom messages sent and received to/from Web Dashboard.
 This message is sent from devices to give feedback on consumption and other enery parameters.
 
         {
+          "GatewayId": "Negozio1",
           "type": "ENERGY",
           "payload": {
             "DeviceId": "tele/sonoff/TELEMETRY",
