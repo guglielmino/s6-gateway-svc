@@ -8,7 +8,7 @@
     "test:e2e": "mocha --compilers js:babel-register 'test/e2e/**/*.spec.js'",
     "build": "babel src/ --out-dir dist --source-maps",
     "clean": "find ./dist -name *.js -type f -delete",
-    "start": "node dist/app.js "
+    "start": "node dist/index.js "
   },
   "keywords": [],
   "author": "Fabrizio Guglielmino <guglielmino@gmail.com>",
@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "daemon": "^1.1.0",
+    "dotenv": "^4.0.0",
     "lodash": "^4.17.2",
     "mqtt": "^2.0.1",
     "pubnub": "^4.2.5",

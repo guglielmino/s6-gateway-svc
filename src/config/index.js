@@ -1,3 +1,17 @@
+'use strict';
+
+require('dotenv').config();
+
+[
+    'PUBNUB_TOPIC',
+    'PUBNUB_PKEY',
+    'PUBNUB_SKEY'
+].forEach((name) => {
+    if (!process.env[name]) {
+        throw new Error(`Environment variable ${name} is missing`)
+    }
+});
+
 let config = {
 
 	mqtt: {
