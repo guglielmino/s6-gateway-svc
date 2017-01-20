@@ -53,8 +53,8 @@ This message is sent from devices to give feedback on consumption and other ener
 
         {
           "GatewayId": "Negozio1",
-          "type": "ENERGY",
-          "payload": {
+          "Type": "ENERGY",
+          "Payload": {
             "DeviceId": "tele/sonoff/TELEMETRY",
             "Yesterday": "0.000",
             "Today": "0.000",
@@ -67,3 +67,13 @@ This message is sent from devices to give feedback on consumption and other ener
           }
         }
 
+## Development
+
+To work with the project some npm script are defined.
+
+        npm run build     # build project in dist/ folder
+        npm run start     # Run project from dist/ folder (it need to be build before)
+        npm run test      # Run unit test
+        npm run test:e2e  # Run end2end test
+        npm run clean     # Clean the dist folder
+        npm run dev       # Run in dev (using nodemon)

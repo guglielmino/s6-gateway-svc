@@ -53,12 +53,12 @@ let pubNubPublish = function(channel) {
 	}
 };
 
-const handlers = MQTTBridge(pubNubPublish(config.pubnub.channel));
+const handlers = MQTTBridge(pubNubPublish(config.pubnub.pub_channel));
 const mqttHub = MQTTHub(handlers);
 
 
 logger.log('info', `PubNub channel '${config.pubnub.channel}'`);
-pubNubHandler.subscribe(config.pubnub.channel);
+pubNubHandler.subscribe(config.pubnub.sub_channel);
 pubNubHandler.on(consts.NEVENT_MESSAGE, onNetworkMessage);
 mqttHandler.on(consts.DEVENT_SRV_CONNECT, onSrvConnect);
 mqttHandler.on(consts.DEVENT_DEV_MESSAGE, onDeviceMessage);

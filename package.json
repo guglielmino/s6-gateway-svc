@@ -8,7 +8,8 @@
     "test:e2e": "mocha --compilers js:babel-register 'test/e2e/**/*.spec.js'",
     "build": "babel src/ --out-dir dist --source-maps",
     "clean": "find ./dist -name *.js -type f -delete",
-    "start": "node dist/index.js "
+    "start": "node dist/index.js ",
+    "dev": "nodemon --exec babel-node src/index.js"
   },
   "keywords": [],
   "author": "Fabrizio Guglielmino <guglielmino@gmail.com>",
@@ -22,6 +23,7 @@
     "chai": "^3.5.0",
     "expect": "^1.20.2",
     "mocha": "^3.1.2",
+    "nodemon": "^1.11.0",
     "sinon": "^1.17.6"
   },
   "dependencies": {
