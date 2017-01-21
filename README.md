@@ -67,6 +67,22 @@ This message is sent from devices to give feedback on consumption and other ener
           }
         }
 
+## Configuration
+
+Application is configured using environment variables. To make them persistent we use dontenv.
+Before launcing the application a .env file must be created in the root putting inside all the enviroment variables
+needed by the app.
+App variables are:
+
+
+NODE_ENV => 'development' or 'production, define the environment in wich app is running
+PUBNUB_PKEY => PubNub publish key 
+PUBNUB_SKEY => PubNub subscribe key
+PUBNUB_PUB_CHANNEL => PubNub channel for publish events (normally is 'events')
+PUBNUB_SUB_CHANNEL => PubNub channel where commands are received, every gateway has a specific channel
+MQTT_URL => Url of the MQTT brocker
+GATEWAY_NAME='DevelopmentGateway'
+
 ## Development
 
 To work with the project some npm script are defined.

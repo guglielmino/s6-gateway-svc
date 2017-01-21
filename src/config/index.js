@@ -16,7 +16,7 @@ require('dotenv').config();
 let config = {
 	gatewayName: process.env.GATEWAY_NAME,
 	mqtt: {
-		url: process.env.MQTT_URL,
+		url: process.env.MQTT_URL || 'mqtt://127.0.0.1',
 		subscribe: ['cmnd/#', 'stat/#', 'tele/#']
 	},
 	pubnub: {

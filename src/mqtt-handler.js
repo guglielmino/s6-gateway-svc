@@ -22,7 +22,6 @@ export default function(config) {
 	});
 
 	client.on('message', function (topic, message, packet) {
-
 		logger.log('debug', 'message', { topic, message });
 		eventEmitter.emit(consts.DEVENT_DEV_MESSAGE, { topic: topic, message: message.toString() });
 	});

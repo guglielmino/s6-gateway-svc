@@ -17,13 +17,13 @@ export default function(publisher) {
 
 	return  [
 		{
-			pattern: /^stat\/.*\/INFO$/, fn: (msg) => publisher(PubNubCommand(consts.CMD_INFO, msg.message))
+			pattern: /^stat\/.*\/INFO$/, fn: (msg) => publisher(PubNubCommand(consts.EVENT_INFO, msg.message))
 		},
 		{
 			pattern: /^stat\/.*\/RESULT$/, fn: (msg) => {
 				const value = ResultTranslator(msg);
 				if (value) {
-					publisher(PubNubCommand(consts.CMD_INFO, value));
+					publisher(PubNubCommand(consts.EVENT_INFO, value));
 				}
 			}
 		},
@@ -31,7 +31,7 @@ export default function(publisher) {
 			pattern: /^tele\/.*\/TELEMETRY$/, fn: (msg)  => {
 				const value = TelemetryTranslator(msg);
 				if (value) {
-					publisher(PubNubCommand(consts.CMD_ENERGY, value));
+					publisher(PubNubCommand(consts.EVENT_ENERGY, value));
 				}
 			}
 		}

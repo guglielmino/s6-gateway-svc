@@ -29,7 +29,7 @@ function onDeviceMessage(msg) {
 }
 
 /**
- * Every time a message is received from nettwork (pubnum)
+ * Every time a message is received from outside (PubNub)
  *
  * @param msg
  */

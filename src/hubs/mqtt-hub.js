@@ -10,7 +10,6 @@ export default function (handlers) {
 
 	return {
 		handleMsg(msg) {
-			logger.log('debug', `MQTT message ${JSON.stringify(msg)}`);
 			if (msg.topic) {
 				let matching = handlers.filter((item) => item.pattern.test(msg.topic));
 				matching.forEach(handler => handler.fn(msg));
