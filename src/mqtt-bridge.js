@@ -22,7 +22,6 @@ export default function(publisher) {
 		{
 			pattern: /^tele\/.*\/RESULT$/, fn: (msg) => {
 				const value = ResultTranslator(msg);
-				console.log(`msg ${JSON.stringify(msg)} => value ${JSON.stringify(value)}`);
 				if (value) {
 					publisher(PubNubCommand(consts.EVENT_INFO, value));
 				}
