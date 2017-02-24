@@ -16,7 +16,8 @@ import _ from 'lodash';
  */
 function onSrvConnect() {
 	console.log("Connect!");
-	_.dropRight(config.mqtt.subscribe).forEach(topic => { logger.log('debug', `MQTT subscribe ${topic}`); mqttHandler.subscribe(topic) });
+	_.dropRight(config.mqtt.subscribe)
+		.forEach(topic => { logger.log('debug', `MQTT subscribe ${topic}`); mqttHandler.subscribe(topic) });
 }
 
 /**
@@ -57,7 +58,7 @@ const handlers = MQTTBridge(pubNubPublish(config.pubnub.pub_channel));
 const mqttHub = MQTTHub(handlers);
 
 
-logger.log('info', `PubNub channel '${config.pubnub.channel}'`);
+logger.log('info', `Subscribe PubNub channel '${config.pubnub.sub_channel}'`);
 pubNubHandler.subscribe(config.pubnub.sub_channel);
 pubNubHandler.on(consts.NEVENT_MESSAGE, onNetworkMessage);
 mqttHandler.on(consts.DEVENT_SRV_CONNECT, onSrvConnect);

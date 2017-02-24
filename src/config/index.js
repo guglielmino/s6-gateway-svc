@@ -2,15 +2,15 @@
 
 require('dotenv').config();
 [
-    'PUBNUB_PUB_CHANNEL',
-    'PUBNUB_PKEY',
-    'PUBNUB_SKEY',
+	'PUBNUB_PUB_CHANNEL',
+	'PUBNUB_PKEY',
+	'PUBNUB_SKEY',
 	'MQTT_URL',
 	'GATEWAY_NAME'
 ].forEach((name) => {
-    if (!process.env[name]) {
-        throw new Error(`Environment variable ${name} is missing`)
-    }
+	if (!process.env[name]) {
+		throw new Error(`Environment variable ${name} is missing`)
+	}
 });
 
 let config = {
