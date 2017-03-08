@@ -2,23 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1d766948-6917-418f-93e0-72e9bb6ba6db" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.editorconfig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/babel.js" afterPath="$PROJECT_DIR$/src/babel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/commands/pubnub-command.js" afterPath="$PROJECT_DIR$/src/commands/pubnub-command.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/config/index.js" afterPath="$PROJECT_DIR$/src/config/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/consts.js" afterPath="$PROJECT_DIR$/src/consts.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.js" afterPath="$PROJECT_DIR$/src/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/logger.js" afterPath="$PROJECT_DIR$/src/logger.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mqtt-handler.js" afterPath="$PROJECT_DIR$/src/mqtt-handler.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mqtt-mediator-setup.js" afterPath="$PROJECT_DIR$/src/mqtt-mediator-setup.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/networks/devices/events-mediator.js" afterPath="$PROJECT_DIR$/src/networks/devices/events-mediator.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/networks/devices/handlers/result-handler.js" afterPath="$PROJECT_DIR$/src/networks/devices/handlers/result-handler.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/networks/devices/handlers/telemetry-handler.js" afterPath="$PROJECT_DIR$/src/networks/devices/handlers/telemetry-handler.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/networks/devices/mappers/result-mapper.js" afterPath="$PROJECT_DIR$/src/networks/devices/mappers/result-mapper.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/networks/devices/mappers/telemetry-mapper.js" afterPath="$PROJECT_DIR$/src/networks/devices/mappers/telemetry-mapper.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pubnub-handler.js" afterPath="$PROJECT_DIR$/src/pubnub-handler.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yarn.lock" afterPath="$PROJECT_DIR$/yarn.lock" />
     </list>
     <ignored path="mqtt-ws-proxy.iws" />
@@ -66,16 +50,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="result-handler.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/networks/devices/handlers/result-handler.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="42" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="mqtt-handler.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/mqtt-handler.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -83,6 +57,8 @@
               <caret line="30" column="6" lean-forward="false" selection-start-line="30" selection-start-column="6" selection-end-line="30" selection-end-column="6" />
               <folding>
                 <element signature="e#0#24#0" expanded="true" />
+                <marker date="1489007117000" expanded="true" signature="180:1113" ph="{...}" />
+                <marker date="1489007117000" expanded="true" signature="639:798" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -104,7 +80,7 @@
         <entry file="file://$PROJECT_DIR$/src/pubnub-handler.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-172">
-              <caret line="22" column="6" lean-forward="true" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="6" />
+              <caret line="22" column="6" lean-forward="false" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="6" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -112,11 +88,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="babel.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="babel.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/babel.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="52" lean-forward="false" selection-start-line="0" selection-start-column="52" selection-end-line="0" selection-end-column="52" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/package.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="17" column="4" lean-forward="false" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -136,7 +122,7 @@
         <entry file="file://$PROJECT_DIR$/src/networks/devices/mappers/telemetry-mapper.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
-              <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -146,8 +132,10 @@
         <entry file="file://$PROJECT_DIR$/src/logger.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="150">
-              <caret line="10" column="6" lean-forward="true" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
-              <folding />
+              <caret line="10" column="6" lean-forward="false" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
+              <folding>
+                <marker date="1489007459000" expanded="true" signature="81:460" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -217,7 +205,6 @@
         <option value="$PROJECT_DIR$/src/networks/devices/handlers/result-handler.js" />
         <option value="$PROJECT_DIR$/src/application.log" />
         <option value="$PROJECT_DIR$/.env" />
-        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/commands/pubnub-command.js" />
         <option value="$PROJECT_DIR$/src/config/index.js" />
         <option value="$PROJECT_DIR$/src/consts.js" />
@@ -230,6 +217,7 @@
         <option value="$PROJECT_DIR$/src/mqtt-mediator-setup.js" />
         <option value="$PROJECT_DIR$/src/pubnub-handler.js" />
         <option value="$PROJECT_DIR$/src/babel.js" />
+        <option value="$PROJECT_DIR$/package.json" />
       </list>
     </option>
   </component>
@@ -502,12 +490,12 @@
       <workItem from="1487869976471" duration="1076000" />
       <workItem from="1487932851161" duration="5921000" />
       <workItem from="1488009360713" duration="1281000" />
-      <workItem from="1488790512377" duration="18682000" />
+      <workItem from="1488790512377" duration="18787000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="92478000" />
+    <option name="totallyTimeSpent" value="92583000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="35" y="23" width="1195" height="777" extended-state="0" />
@@ -758,14 +746,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="12" column="112" lean-forward="false" selection-start-line="12" selection-start-column="112" selection-end-line="12" selection-end-column="112" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/commands/pubnub-command.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -824,6 +804,8 @@
           <caret line="30" column="6" lean-forward="false" selection-start-line="30" selection-start-column="6" selection-end-line="30" selection-end-column="6" />
           <folding>
             <element signature="e#0#24#0" expanded="true" />
+            <marker date="1489007117000" expanded="true" signature="180:1113" ph="{...}" />
+            <marker date="1489007117000" expanded="true" signature="639:798" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -839,7 +821,7 @@
     <entry file="file://$PROJECT_DIR$/src/networks/devices/mappers/telemetry-mapper.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
-          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -857,8 +839,10 @@
     <entry file="file://$PROJECT_DIR$/src/logger.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
-          <caret line="10" column="6" lean-forward="true" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
-          <folding />
+          <caret line="10" column="6" lean-forward="false" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
+          <folding>
+            <marker date="1489007459000" expanded="true" signature="81:460" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -875,7 +859,7 @@
     <entry file="file://$PROJECT_DIR$/src/pubnub-handler.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-172">
-          <caret line="22" column="6" lean-forward="true" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="6" />
+          <caret line="22" column="6" lean-forward="false" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="6" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
@@ -886,6 +870,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="52" lean-forward="false" selection-start-line="0" selection-start-column="52" selection-end-line="0" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="17" column="4" lean-forward="false" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
           <folding />
         </state>
       </provider>
