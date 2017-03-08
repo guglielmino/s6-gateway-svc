@@ -9,7 +9,8 @@
     "build": "babel src/ --out-dir dist --source-maps",
     "clean": "find ./dist -name *.js -type f -delete",
     "start": "node dist/index.js ",
-    "dev": "nodemon --exec babel-node src/index.js"
+    "dev": "nodemon --exec babel-node src/index.js",
+    "lint": "eslint ./ --cache --ignore-pattern .gitignore --ignore-pattern *.spec.js --ignore-pattern *.e2e.js"
   },
   "keywords": [],
   "author": "Fabrizio Guglielmino <guglielmino@gmail.com>",
@@ -21,6 +22,9 @@
     "babel-preset-stage-0": "^6.16.0",
     "babel-register": "^6.18.0",
     "chai": "^3.5.0",
+    "eslint": "^3.17.1",
+    "eslint-config-airbnb-base": "^11.1.1",
+    "eslint-plugin-import": "^2.2.0",
     "expect": "^1.20.2",
     "mocha": "^3.1.2",
     "nodemon": "^1.11.0",

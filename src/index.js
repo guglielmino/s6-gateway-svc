@@ -1,5 +1,3 @@
-'use strict';
-
 import _ from 'lodash';
 import * as consts from './consts';
 import MqttHanlder from './mqtt-handler';
@@ -18,9 +16,13 @@ const mqttMediator = MediatorSetup(pubNubHandler);
  * Event fired when MQTT server connection is ready
  */
 function onSrvConnect() {
-	console.log("Connect!");
-	_.dropRight(config.mqtt.subscribe)
-		.forEach(topic => { logger.log('debug', `MQTT subscribe ${topic}`); mqttHandler.subscribe(topic) });
+  logger.log('info', 'Connect!');
+  _
+    .dropRight(config.mqtt.subscribe)
+    .forEach((topic) => {
+      logger.log('debug', `MQTT subscribe ${topic}`);
+      mqttHandler.subscribe(topic);
+    });
 }
 
 /**
@@ -29,7 +31,7 @@ function onSrvConnect() {
  * @param message
  */
 function onDeviceMessage(msg) {
-	mqttMediator.handle(msg);
+  mqttMediator.handle(msg);
 }
 
 /**
@@ -38,14 +40,13 @@ function onDeviceMessage(msg) {
  * @param msg
  */
 function onNetworkMessage(msg) {
-	if (msg.message.type) {
-		if (msg.message.type === "MQTT") {
-			mqttHandler.publish(msg.message.payload.topic, msg.message.payload.value);
-		}
-	}
-	else {
-		logger.log('debug', 'MESSAGE', msg);
-	}
+  if (msg.message.type) {
+    if (msg.message.type === 'MQTT') {
+      mqttHandler.publish(msg.message.payload.topic, msg.message.payload.value);
+    }
+  } else {
+    logger.log('debug', 'MESSAGE', msg);
+  }
 }
 
 logger.log('info', `Subscribe PubNub channel '${config.pubnub.sub_channel}'`);
