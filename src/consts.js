@@ -12,6 +12,7 @@ export const NEVENT_PRESENCE = 'net-presence';
 // Events Type sent to PubNub
 export const EVENT_ENERGY = 'ENERGY';
 export const EVENT_INFO = 'INFO';
+export const EVENT_POWER_STATUS = 'POWER_STATUS';
 
 // Commands
 export const CMD_DEVICE_LIST = 'DEVICE_LIST';

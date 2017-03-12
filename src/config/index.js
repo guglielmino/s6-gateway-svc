@@ -7,6 +7,7 @@ require('dotenv').config();
   'MQTT_URL',
   'GATEWAY_NAME',
   'API_URL',
+  'API_KEY'
 ].forEach((name) => {
   if (!process.env[name]) {
     throw new Error(`Environment variable ${name} is missing`);
@@ -27,6 +28,7 @@ const config = {
   },
   api: {
     url: process.env.API_URL,
+    key: process.env.API_KEY,
   },
 };
 

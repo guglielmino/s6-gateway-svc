@@ -4,6 +4,10 @@ import EventsMediator from './networks/devices/events-mediator';
 
 import ResultHandler from './networks/devices/handlers/result-handler';
 import TelemetryHandler from './networks/devices/handlers/telemetry-handler';
+import StatResultHandler from './networks/devices/handlers/stat-result-handler';
+
+
+import RestClient from './networks/http/rest-client';
 
 const MediatorSetup = (pubNubHandler) => {
   const mqttMediator = EventsMediator();
@@ -12,7 +16,10 @@ const MediatorSetup = (pubNubHandler) => {
 
   const pnPublisher = pubNubPublish(config.pubnub.pub_channel);
 
-  mqttMediator.addHandler(/^stat\/.*\/INFO$/, msg => logger.log('info', `MSG => ${JSON.stringify(msg)}`));
+  const httpPublisher = payload => RestClient().post(`${config.api.url}events/`, payload);
+
+
+  mqttMediator.addHandler(/^stat\/.*\/RESULT$/, StatResultHandler(httpPublisher));
   mqttMediator.addHandler(/^tele\/.*\/RESULT$/, ResultHandler(pnPublisher));
   mqttMediator.addHandler(/^tele\/.*\/TELEMETRY$/, TelemetryHandler(pnPublisher));
 
