@@ -10,7 +10,6 @@ export default function () {
         json: true,
       };
 
-      console.log(`posting to ${url} => ${JSON.stringify(payload)}`);
       return rp(options);
     },
   };

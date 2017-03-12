@@ -1,4 +1,3 @@
-import logger from './logger';
 import config from './config';
 import EventsMediator from './networks/devices/events-mediator';
 
