@@ -6,8 +6,8 @@ function logger() {
   const filename = path.join(__dirname, 'application.log');
   const wlogger = new (winston.Logger)({
     transports: [
-      new (winston.transports.Console)({ level: 'verbose' }),
-      new (winston.transports.File)({ filename, level: 'verbose' }),
+      new (winston.transports.Console)({ level: 'info' }),
+      new (winston.transports.File)({ filename, level: 'info' }),
     ],
   });
 
