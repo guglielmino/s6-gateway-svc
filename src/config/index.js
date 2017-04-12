@@ -30,6 +30,10 @@ const config = {
     url: process.env.API_URL,
     key: process.env.API_KEY,
   },
+  logger: {
+    level: process.env.LOG_LEVEL || 'debug',
+    path: process.env.LOG_PATH || `${__dirname}/../app.log`,
+  },
 };
 
 export default config;
