@@ -11,6 +11,7 @@ export default function (config) {
     logVerbosity: false,
     publishKey: config.pubnub.publishKey,
     subscribeKey: config.pubnub.subscribeKey,
+    heartbeatInterval: config.pubnub.heartbeatInterval,
   });
 
   logger.log('info', 'starting PubNub');
@@ -43,6 +44,11 @@ export default function (config) {
       pubnub.subscribe({
         channels: [channel],
         withPresence: false,
+      });
+    },
+    unsubsribe: (channel) => {
+      pubnub.unsubscribe({
+        channels: [channel],
       });
     },
     on(event, fn) {

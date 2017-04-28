@@ -50,9 +50,17 @@ function onNetworkMessage(msg) {
   }
 }
 
+function onNetworkStatus(status) {
+  logger.log('info', `PubNub => status ${JSON.stringify(status)}`);
+  if (status.error) {
+    logger.log('info', `PubNub error => ${status.category}`);
+  }
+}
+
 logger.log('info', `Subscribe PubNub channel '${config.pubnub.sub_channel}'`);
 pubNubHandler.subscribe(config.pubnub.sub_channel);
 pubNubHandler.on(consts.NEVENT_MESSAGE, onNetworkMessage);
+pubNubHandler.on(consts.NEVENT_STATUS, onNetworkStatus);
 mqttHandler.on(consts.DEVENT_SRV_CONNECT, onSrvConnect);
 mqttHandler.on(consts.DEVENT_DEV_MESSAGE, onDeviceMessage);
 logger.log('info', 'starting up...');

@@ -25,6 +25,7 @@ const config = {
     subscribeKey: process.env.PUBNUB_SKEY,
     pub_channel: process.env.PUBNUB_PUB_CHANNEL,
     sub_channel: process.env.PUBNUB_SUB_CHANNEL || this.gatewayName,
+    heartbeatInterval: process.env.PUBNUB_HB_INTERVAL || 20,
   },
   api: {
     url: process.env.API_URL,
