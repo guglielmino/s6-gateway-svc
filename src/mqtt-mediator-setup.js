@@ -4,6 +4,7 @@ import EventsMediator from './networks/devices/events-mediator';
 import ResultHandler from './networks/devices/handlers/result-handler';
 import TelemetryHandler from './networks/devices/handlers/telemetry-handler';
 import StatResultHandler from './networks/devices/handlers/stat-result-handler';
+import LwtHandler from './networks/devices/handlers/lwt-handler';
 
 
 import RestClient from './networks/http/rest-client';
@@ -21,6 +22,7 @@ const MediatorSetup = (pubNubHandler) => {
   mqttMediator.addHandler(/^stat\/.*\/RESULT$/, StatResultHandler(httpPublisher));
   mqttMediator.addHandler(/^tele\/.*\/RESULT$/, ResultHandler(pnPublisher));
   mqttMediator.addHandler(/^tele\/.*\/TELEMETRY$/, TelemetryHandler(pnPublisher));
+  mqttMediator.addHandler(/^tele\/.*\/LWT$/, LwtHandler(httpPublisher));
 
   return mqttMediator;
 };
