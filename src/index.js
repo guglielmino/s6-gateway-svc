@@ -40,7 +40,7 @@ function onDeviceMessage(msg) {
  * @param msg
  */
 function onNetworkMessage(msg) {
-  logger.log('info', `PubNub => received ${msg}`);
+  logger.log('info', `PubNub => received ${JSON.stringify(msg)}`);
   if (msg.message.type) {
     if (msg.message.type === 'MQTT') {
       mqttHandler.publish(msg.message.payload.topic, msg.message.payload.value);
