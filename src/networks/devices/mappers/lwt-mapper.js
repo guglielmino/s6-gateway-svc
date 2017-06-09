@@ -1,7 +1,12 @@
 export default function (msg) {
-  const resultMessage = JSON.parse(msg.message);
-  if (resultMessage.Status) {
-    return { Topic: msg.topic, Status: resultMessage.Status, DeviceId: resultMessage.DeviceId };
+  try {
+    const resultMessage = JSON.parse(msg.message);
+    if (resultMessage.Status) {
+      return { Topic: msg.topic, Status: resultMessage.Status, DeviceId: resultMessage.DeviceId };
+    }
+  } catch (e) {  // eslint-disable-lint  no-empty
+
   }
+
   return null;
 }
