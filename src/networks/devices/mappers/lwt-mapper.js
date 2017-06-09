@@ -1,6 +1,7 @@
 export default function (msg) {
-  if (msg.message) {
-    return Object.assign({}, { Topic: msg.topic }, { Status: msg.message });
+  const resultMessage = JSON.parse(msg.message);
+  if (resultMessage.Status) {
+    return { Topic: msg.topic, Status: resultMessage.Status, DeviceId: resultMessage.DeviceId };
   }
   return null;
 }
