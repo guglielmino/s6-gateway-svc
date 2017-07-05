@@ -54,6 +54,10 @@ function onNetworkStatus(status) {
   logger.log('info', `PubNub => status ${JSON.stringify(status)}`);
   if (status.error) {
     logger.log('info', `PubNub error => ${status.category}`);
+    if (status.category === 'PNTimeoutCategory') {
+      pubNubHandler.reconnect();
+      logger.log('info', 'PubNub forcing reconnect');
+    }
   }
 }
 

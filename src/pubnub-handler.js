@@ -54,5 +54,8 @@ export default function (config) {
     on(event, fn) {
       eventEmitter.on(event, fn);
     },
+    reconnect: () => {
+      pubnub.reconnect();
+    },
   };
 }
