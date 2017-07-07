@@ -14,13 +14,13 @@ const MediatorSetup = (pubNubHandler) => {
 
   const pubNubPublish = channel => message => pubNubHandler.publish(channel, message);
 
-  const pnPublisher = pubNubPublish(config.pubnub.pub_channel);
+  //const pnPublisher = pubNubPublish(config.pubnub.pub_channel);
 
   const httpPublisher = payload => RestClient().post(`${config.api.url}events/`, payload);
 
   mqttMediator.addHandler(/^stat\/.*\/RESULT$/, StatResultHandler(httpPublisher));
-  mqttMediator.addHandler(/^tele\/.*\/RESULT$/, ResultHandler(pnPublisher));
-  mqttMediator.addHandler(/^tele\/.*\/TELEMETRY$/, TelemetryHandler(pnPublisher));
+  //mqttMediator.addHandler(/^tele\/.*\/RESULT$/, ResultHandler(pnPublisher));
+  //mqttMediator.addHandler(/^tele\/.*\/TELEMETRY$/, TelemetryHandler(pnPublisher));
   mqttMediator.addHandler(/^tele\/.*\/LWT$/, LwtHandler(httpPublisher));
 
   return mqttMediator;
