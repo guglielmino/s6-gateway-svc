@@ -11,7 +11,9 @@
     "start": "node dist/index.js ",
     "dev": "nodemon --exec babel-node src/index.js",
     "lint": "eslint ./ --cache ",
-    "postinstall": "./scripts/postinstall.sh"
+    "postinstall": "./scripts/postinstall.sh",
+    "precommit": "npm run lint && npm run test",
+    "validate-commit": "validate-commit-msg"
   },
   "precommit": [
     "lint",
@@ -35,7 +37,8 @@
     "nodemon": "^1.11.0",
     "pre-commit": "^1.2.2",
     "proxyquire": "^1.7.10",
-    "sinon": "^1.17.6"
+    "sinon": "^1.17.6",
+    "validate-commit-msg": "^2.14.0"
   },
   "dependencies": {
     "daemon": "^1.1.0",
