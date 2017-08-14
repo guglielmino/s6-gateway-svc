@@ -10,7 +10,8 @@
     "clean": "find ./dist -name *.js -type f -delete",
     "start": "node dist/index.js ",
     "dev": "nodemon --exec babel-node src/index.js",
-    "lint": "eslint ./ --cache "
+    "lint": "eslint ./ --cache ",
+    "postinstall": "./scripts/postinstall.sh"
   },
   "precommit": [
     "lint",
