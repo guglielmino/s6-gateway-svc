@@ -2,6 +2,7 @@ require('dotenv').config();
 
 [
   'PUBNUB_PUB_CHANNEL',
+  'PUBNUB_SUB_CHANNEL',
   'PUBNUB_PKEY',
   'PUBNUB_SKEY',
   'MQTT_URL',
@@ -18,7 +19,11 @@ const config = {
   gatewayName: process.env.GATEWAY_NAME,
   mqtt: {
     url: process.env.MQTT_URL || 'mqtt://127.0.0.1',
-    subscribe: ['cmnd/#', 'stat/#', 'tele/#'],
+    subscribe: [
+      'cmnd/#',
+      'stat/#',
+      'tele/#',
+      'building/+/sensors/+/+'],
   },
   pubnub: {
     publishKey: process.env.PUBNUB_PKEY,

@@ -1,6 +1,6 @@
-import PubNubCommand from '../../../commands/pubnub-command';
+import PubNubCommand from '../../../../commands/pubnub-command';
 import LwtMapper from '../mappers/lwt-mapper';
-import * as consts from '../../../consts';
+import * as consts from '../../../../consts';
 
 export default publisher => (topic, msg) => {
   const value = LwtMapper(msg);
