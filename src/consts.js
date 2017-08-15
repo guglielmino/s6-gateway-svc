@@ -17,6 +17,7 @@ export const EVENT_LWT = 'LWT';
 
 export const EVENT_S6_POWER_CONSUME = 'FRESNEL_POWER_CONSUME';
 export const EVENT_S6_INFO_CONSUME = 'FRESNEL_INFO';
+export const EVENT_S6_POWER_FEED_BACK = 'FRESNEL_POWER_FEEDBACK';
 
 // Commands
 export const CMD_DEVICE_LIST = 'DEVICE_LIST';
