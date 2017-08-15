@@ -7,6 +7,7 @@ import TelemetryHandler from './networks/devices/sonoff/handlers/telemetry-handl
 import ResultHandler from './networks/devices/sonoff/handlers/result-handler';
 // S6 Fresnel Handler
 import S6PowerConsumeHandler from './networks/devices/s6fresnel/handlers/s6-power-handler';
+import S6InfoHandler from './networks/devices/s6fresnel/handlers/s6-info-handler';
 
 
 import RestClient from './networks/http/rest-client';
@@ -21,8 +22,11 @@ const MediatorSetup = () => {
   mqttMediator.addHandler(/^tele\/.*\/LWT$/, LwtHandler(httpPublisher));
   mqttMediator.addHandler(/^tele\/.*\/TELEMETRY$/, TelemetryHandler(httpPublisher));
 
+  // S6 Fresnel module messages
   mqttMediator.addHandler(/.*\/.*\/sensors\/([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})\/power/,
     S6PowerConsumeHandler(httpPublisher));
+  mqttMediator.addHandler(/.*\/.*\/sensors\/([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})\/info/,
+    S6InfoHandler(httpPublisher));
 
   return mqttMediator;
 };
