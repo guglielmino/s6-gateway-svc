@@ -68,4 +68,5 @@ pubNubHandler.on(consts.NEVENT_STATUS, onNetworkStatus);
 mqttHandler.on(consts.DEVENT_SRV_CONNECT, onSrvConnect);
 mqttHandler.on(consts.DEVENT_DEV_MESSAGE, onDeviceMessage);
 logger.log('info', 'starting up...');
+logger.log('debug', `MQTT subscribe ${_.last(config.mqtt.subscribe)}`);
 mqttHandler.subscribe(_.last(config.mqtt.subscribe));

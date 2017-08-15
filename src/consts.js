@@ -15,5 +15,7 @@ export const EVENT_INFO = 'INFO';
 export const EVENT_POWER_STATUS = 'POWER_STATUS';
 export const EVENT_LWT = 'LWT';
 
+export const EVENT_S6_POWER_CONSUME = 'POWER_CONSUME';
+
 // Commands
 export const CMD_DEVICE_LIST = 'DEVICE_LIST';
