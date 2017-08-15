@@ -1,4 +1,4 @@
-import PubNubCommand from '../../../../commands/pubnub-command';
+import MessageEnvelope from '../../../message-envelope';
 import LwtMapper from '../mappers/lwt-mapper';
 import * as consts from '../../../../consts';
 
@@ -9,6 +9,6 @@ import * as consts from '../../../../consts';
 export default publisher => (msg) => {
   const value = LwtMapper(msg);
   if (value) {
-    publisher(PubNubCommand(consts.EVENT_LWT, value));
+    publisher(MessageEnvelope(consts.EVENT_LWT, value));
   }
 };
