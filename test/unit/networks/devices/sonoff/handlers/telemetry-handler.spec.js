@@ -18,7 +18,7 @@ describe('Sonoff Power Telemetry message handlers', () => {
     };
 
     const publisher = sinon.spy();
-    TelemetryHandler(publisher)('tele/lamp1/TELEMETRY', msg);
+    TelemetryHandler(publisher)(msg);
     publisher.calledOnce.should.be.true;
   });
 });

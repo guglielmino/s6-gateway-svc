@@ -17,7 +17,7 @@ const EventsMediator = () => {
     handle: (msg) => {
       if (msg.topic) {
         const matching = handlers.filter(item => item.pattern.test(msg.topic));
-        matching.forEach(handler => handler.fn(msg.topic, msg));
+        matching.forEach(handler => handler.fn(msg));
       }
     },
 

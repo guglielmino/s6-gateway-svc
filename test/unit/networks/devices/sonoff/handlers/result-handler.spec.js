@@ -18,7 +18,7 @@ describe('Sonoff Info1 message handlers', () => {
     };
 
     const publisher = sinon.spy();
-    ResultHandler(publisher)('tele/lamp1/RESULT', msg);
+    ResultHandler(publisher)(msg);
     publisher.calledOnce.should.be.true;
   });
 });

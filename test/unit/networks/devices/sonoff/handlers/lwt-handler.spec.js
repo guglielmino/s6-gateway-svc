@@ -18,7 +18,7 @@ describe('Sonoff LWT message handlers', () => {
     };
 
     const publisher = sinon.spy();
-    LwtHandler(publisher)('tele/lamp1/LWT', msg);
+    LwtHandler(publisher)(msg);
     publisher.calledOnce.should.be.true;
   });
 });

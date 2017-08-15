@@ -18,7 +18,7 @@ describe('Sonoff Power feedback message handlers', () => {
     };
 
     const publisher = sinon.spy();
-    StatResultHandler(publisher)('tele/lamp1/RESULT', msg);
+    StatResultHandler(publisher)(msg);
     publisher.calledOnce.should.be.true;
   });
 });

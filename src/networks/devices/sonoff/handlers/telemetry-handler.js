@@ -6,7 +6,7 @@ import * as consts from '../../../../consts';
  * Handles power consumption telemetry data coming from Sonoff devices
  * @param publisher
  */
-export default publisher => (topic, msg) => {
+export default publisher => (msg) => {
   const value = TelemetryMapper(msg);
   if (value) {
     publisher(PubNubCommand(consts.EVENT_ENERGY, value));

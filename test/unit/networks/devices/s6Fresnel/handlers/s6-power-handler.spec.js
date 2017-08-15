@@ -18,7 +18,7 @@ describe('S6 Fresnel module power message handlers', () => {
     };
 
     const publisher = sinon.spy();
-    S6PowerHandler(publisher)('building/room1/sensors/00:11:22:33:44:55/power', msg);
+    S6PowerHandler(publisher)(msg);
     publisher.calledOnce.should.be.true;
   });
 });
