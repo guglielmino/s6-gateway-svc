@@ -1,6 +1,6 @@
 {
   "name": "mqtt-ws-proxy",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,37 @@
     "clean": "find ./dist -name *.js -type f -delete",
     "start": "node dist/index.js ",
     "dev": "nodemon --exec babel-node src/index.js",
-    "lint": "eslint ./ --cache "
+    "lint": "eslint ./ --cache ",
+    "postinstall": "./scripts/postinstall.sh",
+    "precommit": "npm run lint && npm run test",
+    "validate-commit": "validate-commit-msg",
+    "commit": "git-cz"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    },
+    "validate-commit-msg": {
+      "types": [
+        "feat",
+        "fix",
+        "docs",
+        "style",
+        "refactor",
+        "perf",
+        "test",
+        "chore",
+        "revert",
+        "release"
+      ],
+      "warnOnFail": false,
+      "maxSubjectLength": 100,
+      "subjectPattern": ".+",
+      "autoFix": false,
+      "scope": {
+        "required": false
+      }
+    }
   },
   "precommit": [
     "lint",
@@ -26,6 +56,7 @@
     "babel-preset-stage-0": "^6.16.0",
     "babel-register": "^6.18.0",
     "chai": "^3.5.0",
+    "commitizen": "^2.9.6",
     "eslint": "^3.17.1",
     "eslint-config-airbnb-base": "^11.1.1",
     "eslint-plugin-import": "^2.2.0",
@@ -34,7 +65,8 @@
     "nodemon": "^1.11.0",
     "pre-commit": "^1.2.2",
     "proxyquire": "^1.7.10",
-    "sinon": "^1.17.6"
+    "sinon": "^1.17.6",
+    "validate-commit-msg": "^2.14.0"
   },
   "dependencies": {
     "daemon": "^1.1.0",
