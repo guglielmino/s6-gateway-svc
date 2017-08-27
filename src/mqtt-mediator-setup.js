@@ -8,10 +8,12 @@ import ResultHandler from './networks/devices/sonoff/handlers/result-handler';
 // S6 Fresnel Handler
 import S6PowerConsumeHandler from './networks/devices/s6fresnel/handlers/s6-power-handler';
 import S6InfoHandler from './networks/devices/s6fresnel/handlers/s6-info-handler';
-
+import S6PowerFeedbackHandler from './networks/devices/s6fresnel/handlers/s6-power-feedback-handler';
+import S6LWTHandler from './networks/devices/s6fresnel/handlers/s6-lwt-handler';
 
 import RestClient from './networks/http/rest-client';
 
+// TODO: refactor for testing (as in server code)
 const MediatorSetup = () => {
   const mqttMediator = EventsMediator();
 
@@ -27,6 +29,10 @@ const MediatorSetup = () => {
     S6PowerConsumeHandler(httpPublisher));
   mqttMediator.addHandler(/.*\/.*\/sensors\/([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})\/info/,
     S6InfoHandler(httpPublisher));
+  mqttMediator.addHandler(/.*\/.*\/events\/([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})\/power/,
+    S6PowerFeedbackHandler(httpPublisher));
+  mqttMediator.addHandler(/.*\/.*\/events\/([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})\/lwt/,
+    S6LWTHandler(httpPublisher));
 
   return mqttMediator;
 };

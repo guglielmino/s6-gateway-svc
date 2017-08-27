@@ -23,7 +23,8 @@ const config = {
       'cmnd/#',
       'stat/#',
       'tele/#',
-      'building/+/sensors/+/+'],
+      'building/+/sensors/+/+',
+      'building/+/events/+/+'],
   },
   pubnub: {
     publishKey: process.env.PUBNUB_PKEY,
