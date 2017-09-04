@@ -1,6 +1,6 @@
 {
   "name": "mqtt-ws-proxy",
-  "version": "1.0.4",
+  "version": "v1.1.0",
   "description": "",
   "main": "index.js",
   "scripts": {

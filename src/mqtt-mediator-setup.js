@@ -17,7 +17,8 @@ import RestClient from './networks/http/rest-client';
 const MediatorSetup = () => {
   const mqttMediator = EventsMediator();
 
-  const httpPublisher = payload => RestClient().post(`${config.api.url}events/`, payload);
+  const httpPublisher = payload => RestClient(config.gatewayName, config.api.key)
+    .post(`${config.api.url}events/`, payload);
 
   mqttMediator.addHandler(/^tele\/.*\/RESULT$/, ResultHandler(httpPublisher));
   mqttMediator.addHandler(/^stat\/.*\/RESULT$/, StatResultHandler(httpPublisher));
