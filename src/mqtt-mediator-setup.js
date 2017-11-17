@@ -10,6 +10,11 @@ import S6PowerConsumeHandler from './networks/devices/s6fresnel/handlers/s6-powe
 import S6InfoHandler from './networks/devices/s6fresnel/handlers/s6-info-handler';
 import S6PowerFeedbackHandler from './networks/devices/s6fresnel/handlers/s6-power-feedback-handler';
 import S6LWTHandler from './networks/devices/s6fresnel/handlers/s6-lwt-handler';
+import S6CurrentHandler from './networks/devices/s6fresnel/handlers/s6-current-handler';
+import S6DailyHandler from './networks/devices/s6fresnel/handlers/s6-daily-consume-handler';
+import S6FrequencyHandler from './networks/devices/s6fresnel/handlers/s6-frequency-handler';
+import S6PowerFactorHandler from './networks/devices/s6fresnel/handlers/s6-power-factor-handler';
+import S6ReactivePowerHandler from './networks/devices/s6fresnel/handlers/s6-reactive-power-handler';
 
 import RestClient from './networks/http/rest-client';
 
@@ -34,6 +39,16 @@ const MediatorSetup = () => {
     S6PowerFeedbackHandler(httpPublisher));
   mqttMediator.addHandler(/.*\/.*\/events\/.*\/lwt/,
     S6LWTHandler(httpPublisher));
+  mqttMediator.addHandler(/.*\/.*\/events\/.*\/reactivepower/,
+    S6ReactivePowerHandler(httpPublisher));
+  mqttMediator.addHandler(/.*\/.*\/events\/.*\/dailyconsume/,
+    S6DailyHandler(httpPublisher));
+  mqttMediator.addHandler(/.*\/.*\/events\/.*\/current/,
+    S6CurrentHandler(httpPublisher));
+  mqttMediator.addHandler(/.*\/.*\/events\/.*\/frequency/,
+    S6FrequencyHandler(httpPublisher));
+  mqttMediator.addHandler(/.*\/.*\/events\/.*\/powerfactor/,
+    S6PowerFactorHandler(httpPublisher));
 
   return mqttMediator;
 };

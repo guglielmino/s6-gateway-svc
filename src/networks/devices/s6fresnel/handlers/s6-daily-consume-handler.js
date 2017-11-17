@@ -5,6 +5,6 @@ import S6SensorDataMapper from '../mappers/sensor-data-mapper';
 export default publisher => (msg) => {
   const value = S6SensorDataMapper(msg);
   if (value) {
-    publisher(MessageEnvelope(consts.EVENT_S6_POWER_CONSUME, value));
+    publisher(MessageEnvelope(consts.EVENT_S6_DAILY_CONSUME, value));
   }
 };
