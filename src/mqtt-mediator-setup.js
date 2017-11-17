@@ -40,17 +40,17 @@ const MediatorSetup = () => {
     S6PowerFeedbackHandler(httpPublisher));
   mqttMediator.addHandler(/.*\/.*\/events\/.*\/lwt/,
     S6LWTHandler(httpPublisher));
-  mqttMediator.addHandler(/.*\/.*\/events\/.*\/reactivepower/,
+  mqttMediator.addHandler(/.*\/.*\/sensors\/.*\/reactivepower/,
     S6ReactivePowerHandler(httpPublisher));
-  mqttMediator.addHandler(/.*\/.*\/events\/.*\/dailyconsume/,
+  mqttMediator.addHandler(/.*\/.*\/sensors\/.*\/dailyconsume/,
     S6DailyHandler(httpPublisher));
-  mqttMediator.addHandler(/.*\/.*\/events\/.*\/current/,
+  mqttMediator.addHandler(/.*\/.*\/sensors\/.*\/current/,
     S6CurrentHandler(httpPublisher));
-  mqttMediator.addHandler(/.*\/.*\/events\/.*\/frequency/,
+  mqttMediator.addHandler(/.*\/.*\/sensors\/.*\/frequency/,
     S6FrequencyHandler(httpPublisher));
-  mqttMediator.addHandler(/.*\/.*\/events\/.*\/powerfactor/,
+  mqttMediator.addHandler(/.*\/.*\/sensors\/.*\/powerfactor/,
     S6PowerFactorHandler(httpPublisher));
-  mqttMediator.addHandler(/.*\/.*\/events\/.*\/voltage/,
+  mqttMediator.addHandler(/.*\/.*\/sensors\/.*\/voltage/,
     S6VoltageHandler(httpPublisher));
 
   return mqttMediator;
