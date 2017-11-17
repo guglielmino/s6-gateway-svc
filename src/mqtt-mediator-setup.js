@@ -15,6 +15,7 @@ import S6DailyHandler from './networks/devices/s6fresnel/handlers/s6-daily-consu
 import S6FrequencyHandler from './networks/devices/s6fresnel/handlers/s6-frequency-handler';
 import S6PowerFactorHandler from './networks/devices/s6fresnel/handlers/s6-power-factor-handler';
 import S6ReactivePowerHandler from './networks/devices/s6fresnel/handlers/s6-reactive-power-handler';
+import S6VoltageHandler from './networks/devices/s6fresnel/handlers/s6-voltage-handler';
 
 import RestClient from './networks/http/rest-client';
 
@@ -49,6 +50,8 @@ const MediatorSetup = () => {
     S6FrequencyHandler(httpPublisher));
   mqttMediator.addHandler(/.*\/.*\/events\/.*\/powerfactor/,
     S6PowerFactorHandler(httpPublisher));
+  mqttMediator.addHandler(/.*\/.*\/events\/.*\/voltage/,
+    S6VoltageHandler(httpPublisher));
 
   return mqttMediator;
 };
