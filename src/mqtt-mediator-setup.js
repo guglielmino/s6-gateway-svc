@@ -26,13 +26,13 @@ const MediatorSetup = () => {
   mqttMediator.addHandler(/^tele\/.*\/TELEMETRY$/, TelemetryHandler(httpPublisher));
 
   // S6 Fresnel module messages
-  mqttMediator.addHandler(/.*\/.*\/sensors\/([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})\/power/,
+  mqttMediator.addHandler(/.*\/.*\/sensors\/.*\/power/,
     S6PowerConsumeHandler(httpPublisher));
-  mqttMediator.addHandler(/.*\/.*\/sensors\/([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})\/info/,
+  mqttMediator.addHandler(/.*\/.*\/sensors\/.*\/info/,
     S6InfoHandler(httpPublisher));
-  mqttMediator.addHandler(/.*\/.*\/events\/([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})\/power/,
+  mqttMediator.addHandler(/.*\/.*\/events\/.*\/power/,
     S6PowerFeedbackHandler(httpPublisher));
-  mqttMediator.addHandler(/.*\/.*\/events\/([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})\/lwt/,
+  mqttMediator.addHandler(/.*\/.*\/events\/.*\/lwt/,
     S6LWTHandler(httpPublisher));
 
   return mqttMediator;
