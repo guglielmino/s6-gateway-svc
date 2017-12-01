@@ -42,7 +42,7 @@ const MediatorSetup = () => {
     S6LWTHandler(httpPublisher));
   mqttMediator.addHandler(/.*\/.*\/sensors\/.*\/reactivepower/,
     S6ReactivePowerHandler(httpPublisher));
-  mqttMediator.addHandler(/.*\/.*\/sensors\/.*\/dailyconsume/,
+  mqttMediator.addHandler(/.*\/.*\/sensors\/.*\/dailyKwh/,
     S6DailyHandler(httpPublisher));
   mqttMediator.addHandler(/.*\/.*\/sensors\/.*\/current/,
     S6CurrentHandler(httpPublisher));
