@@ -17,7 +17,8 @@ describe('S6 Fresnel module reactive power message handlers', () => {
     };
 
     const publisher = sinon.spy();
-    S6ReactivePowerHandler(publisher)(msg);
+    const envelope = (msg) => msg;
+    S6ReactivePowerHandler({ publisher, envelope })(msg);
     publisher.calledOnce.should.be.true;
   });
 });

@@ -1,5 +1,6 @@
 import config from './config';
 import EventsMediator from './networks/devices/events-mediator';
+import MessageEnvelope from './networks/message-envelope';
 
 import StatResultHandler from './networks/devices/sonoff/handlers/stat-result-handler';
 import LwtHandler from './networks/devices/sonoff/handlers/lwt-handler';
@@ -26,32 +27,36 @@ const MediatorSetup = () => {
   const httpPublisher = payload => RestClient(config.gatewayName, config.api.key)
     .post(`${config.api.url}events/`, payload);
 
-  mqttMediator.addHandler(/^tele\/.*\/RESULT$/, ResultHandler(httpPublisher));
-  mqttMediator.addHandler(/^stat\/.*\/RESULT$/, StatResultHandler(httpPublisher));
-  mqttMediator.addHandler(/^tele\/.*\/LWT$/, LwtHandler(httpPublisher));
-  mqttMediator.addHandler(/^tele\/.*\/TELEMETRY$/, TelemetryHandler(httpPublisher));
+  const envelope = MessageEnvelope(config.gatewayName);
+
+  const handlerParams = { publisher: httpPublisher, envelope };
+
+  mqttMediator.addHandler(/^tele\/.*\/RESULT$/, ResultHandler(handlerParams));
+  mqttMediator.addHandler(/^stat\/.*\/RESULT$/, StatResultHandler(handlerParams));
+  mqttMediator.addHandler(/^tele\/.*\/LWT$/, LwtHandler(handlerParams));
+  mqttMediator.addHandler(/^tele\/.*\/TELEMETRY$/, TelemetryHandler(handlerParams));
 
   // S6 Fresnel module messages
   mqttMediator.addHandler(/.*\/.*\/sensors\/.*\/power$/,
-    S6PowerConsumeHandler(httpPublisher));
+    S6PowerConsumeHandler(handlerParams));
   mqttMediator.addHandler(/.*\/.*\/sensors\/.*\/info/,
-    S6InfoHandler(httpPublisher));
+    S6InfoHandler(handlerParams));
   mqttMediator.addHandler(/.*\/.*\/events\/.*\/power$/,
-    S6PowerFeedbackHandler(httpPublisher));
+    S6PowerFeedbackHandler(handlerParams));
   mqttMediator.addHandler(/.*\/.*\/events\/.*\/lwt/,
-    S6LWTHandler(httpPublisher));
+    S6LWTHandler(handlerParams));
   mqttMediator.addHandler(/.*\/.*\/sensors\/.*\/reactivepower/,
-    S6ReactivePowerHandler(httpPublisher));
+    S6ReactivePowerHandler(handlerParams));
   mqttMediator.addHandler(/.*\/.*\/sensors\/.*\/dailyKwh/,
-    S6DailyHandler(httpPublisher));
+    S6DailyHandler(handlerParams));
   mqttMediator.addHandler(/.*\/.*\/sensors\/.*\/current/,
-    S6CurrentHandler(httpPublisher));
+    S6CurrentHandler(handlerParams));
   mqttMediator.addHandler(/.*\/.*\/sensors\/.*\/frequency/,
-    S6FrequencyHandler(httpPublisher));
+    S6FrequencyHandler(handlerParams));
   mqttMediator.addHandler(/.*\/.*\/sensors\/.*\/powerfactor/,
-    S6PowerFactorHandler(httpPublisher));
+    S6PowerFactorHandler(handlerParams));
   mqttMediator.addHandler(/.*\/.*\/sensors\/.*\/voltage/,
-    S6VoltageHandler(httpPublisher));
+    S6VoltageHandler(handlerParams));
 
   return mqttMediator;
 };

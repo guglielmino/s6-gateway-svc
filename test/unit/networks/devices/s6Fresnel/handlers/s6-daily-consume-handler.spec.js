@@ -17,7 +17,8 @@ describe('S6 Fresnel module daily consume message handlers', () => {
     };
 
     const publisher = sinon.spy();
-    S6DailyHandler(publisher)(msg);
+    const envelope = (msg) => msg;
+    S6DailyHandler({ publisher, envelope })(msg);
     publisher.calledOnce.should.be.true;
   });
 });

@@ -1,5 +1,4 @@
-import config from '../config/index';
+export default gatewayName => (type, value) => ({
+  GatewayId: gatewayName, Type: type, Payload: value,
+});
 
-export default function (type, value) {
-  return { GatewayId: config.gatewayName, Type: type, Payload: value };
-}
