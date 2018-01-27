@@ -17,7 +17,6 @@ test:
     - npm run test
 
 build:
-  stage: build
   only:
     - master
   script:
