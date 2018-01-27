@@ -18,7 +18,8 @@ describe('Sonoff Power feedback message handlers', () => {
     };
 
     const publisher = sinon.spy();
-    StatResultHandler(publisher)(msg);
+    const envelope = (msg) => msg;
+    StatResultHandler({ publisher, envelope })(msg);
     publisher.calledOnce.should.be.true;
   });
 });

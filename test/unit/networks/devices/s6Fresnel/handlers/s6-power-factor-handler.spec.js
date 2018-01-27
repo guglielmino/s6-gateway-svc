@@ -17,7 +17,8 @@ describe('S6 Fresnel module power factor message handlers', () => {
     };
 
     const publisher = sinon.spy();
-    S6PowerFactorHandler(publisher)(msg);
+    const envelope = (msg) => msg;
+    S6PowerFactorHandler({ publisher, envelope })(msg);
     publisher.calledOnce.should.be.true;
   });
 });

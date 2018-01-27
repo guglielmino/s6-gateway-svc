@@ -18,7 +18,8 @@ describe('Sonoff LWT message handlers', () => {
     };
 
     const publisher = sinon.spy();
-    LwtHandler(publisher)(msg);
+    const envelope = (msg) => msg;
+    LwtHandler({ publisher, envelope })(msg);
     publisher.calledOnce.should.be.true;
   });
 });

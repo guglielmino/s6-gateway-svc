@@ -6,7 +6,6 @@ import sinon from 'sinon';
 chai.should();
 let expect = chai.expect;
 
-import * as consts from '../../../../../../src/consts';
 import S6LWTHandler from '../../../../../../src/networks/devices/s6fresnel/handlers/s6-lwt-handler';
 
 describe('S6 Fresnel module LWT message handlers', () => {
@@ -18,7 +17,8 @@ describe('S6 Fresnel module LWT message handlers', () => {
     };
 
     const publisher = sinon.spy();
-    S6LWTHandler(publisher)(msg);
+    const envelope = (msg) => msg;
+    S6LWTHandler({ publisher, envelope })(msg);
     publisher.calledOnce.should.be.true;
   });
 });

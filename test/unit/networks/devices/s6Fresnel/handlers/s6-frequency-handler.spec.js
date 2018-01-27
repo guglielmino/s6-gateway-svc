@@ -17,7 +17,8 @@ describe('S6 Fresnel module frequency message handlers', () => {
     };
 
     const publisher = sinon.spy();
-    S6FrequencyHandler(publisher)(msg);
+    const envelope = (msg) => msg;
+    S6FrequencyHandler({ publisher, envelope })(msg);
     publisher.calledOnce.should.be.true;
   });
 });

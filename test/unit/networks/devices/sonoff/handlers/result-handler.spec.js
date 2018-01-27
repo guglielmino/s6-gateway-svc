@@ -18,7 +18,8 @@ describe('Sonoff Info1 message handlers', () => {
     };
 
     const publisher = sinon.spy();
-    ResultHandler(publisher)(msg);
+    const envelope = (msg) => msg;
+    ResultHandler({ publisher, envelope })(msg);
     publisher.calledOnce.should.be.true;
   });
 });

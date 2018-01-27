@@ -6,7 +6,6 @@ import sinon from 'sinon';
 chai.should();
 let expect = chai.expect;
 
-import * as consts from '../../../../../../src/consts';
 import S6PowerHandler from '../../../../../../src/networks/devices/s6fresnel/handlers/s6-power-handler';
 
 describe('S6 Fresnel module power message handlers', () => {
@@ -18,7 +17,8 @@ describe('S6 Fresnel module power message handlers', () => {
     };
 
     const publisher = sinon.spy();
-    S6PowerHandler(publisher)(msg);
+    const envelope = (msg) => msg;
+    S6PowerHandler({ publisher, envelope })(msg);
     publisher.calledOnce.should.be.true;
   });
 });
