@@ -25,6 +25,6 @@ build:
     - npm run build
     - tar czf dist.tgz dist/
 
-   artifacts:
-      paths:
+  artifacts:
+    paths:
       - dist.tgz
