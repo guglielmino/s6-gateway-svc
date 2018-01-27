@@ -1,20 +1,19 @@
-image: docker
+image: node:6
 
-stages:
-  - test
-  - build
+before_script:
+  - npm install -y
 
-services:
-  - docker:dind
+# This folder is cached between builds
+# http://docs.gitlab.com/ce/ci/yaml/README.html#cache
+cache:
+  paths:
+    - node_modules/
 
-variables:
-  DOCKER_DRIVER: overlay2
 
 test:
   only:
     - develop
   scripts:
-    - npm i -y
     - npm run test
 
 build:
@@ -23,7 +22,6 @@ build:
     - master
   script:
     - export IMG_VERSION=`cat package.json |grep version|cut -d ':' -f 2| sed 's/[" ,]//g'`
-    - npm i -y
     - npm run test
     - npm run build
     - tar czf dist.tgz dist/
