@@ -1,10 +1,21 @@
 image: docker
 
+stages:
+  - test
+  - build
+
 services:
   - docker:dind
 
 variables:
   DOCKER_DRIVER: overlay2
+
+test:
+  only:
+    - develop
+  scripts:
+    - npm i -y
+    - npm run test
 
 build:
   stage: build
