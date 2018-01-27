@@ -1,6 +1,6 @@
 {
   "name": "mqtt-ws-proxy",
-  "version": "1.0.4",
+  "version": "v1.4.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -22,6 +22,7 @@
     },
     "validate-commit-msg": {
       "types": [
+        "ci",
         "feat",
         "fix",
         "docs",

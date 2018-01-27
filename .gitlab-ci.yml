@@ -1,0 +1,22 @@
+image: docker
+
+services:
+  - docker:dind
+
+variables:
+  DOCKER_DRIVER: overlay2
+
+build:
+  stage: build
+  only:
+    - master
+  script:
+    - export IMG_VERSION=`cat package.json |grep version|cut -d ':' -f 2| sed 's/[" ,]//g'`
+    - npm i -y
+    - npm run test
+    - npm run build
+    - tar czf dist.tgz dist/
+
+   artifacts:
+      paths:
+      - dist.tgz
