@@ -22,8 +22,10 @@ build:
     - export IMG_VERSION=`cat package.json |grep version|cut -d ':' -f 2| sed 's/[" ,]//g'`
     - npm run test
     - npm run build
-    - tar czf dist.tgz dist/
+    - tar czf release.tgz package.json dist/
+    - export PAYLOAD=`python -c "exec(\"import urllib; print(urllib.quote('{{ "BuildId": {0}, "ProjectId": {1}, "AppVersion": {2} }}'.format($CI_BUILD_ID, $CI_PROJECT_ID, $IMG_VERSION)))\")"`
+    - curl https://ps.pndsn.com/publish/$PUB_KEY/$SUB_KEY/0/$CHANNEL/cb/$PAYLOAD
 
   artifacts:
     paths:
-      - dist.tgz
+      - release.tgz
