@@ -20,10 +20,11 @@ build:
     - master
   script:
     - export IMG_VERSION=`cat package.json |grep version|cut -d ':' -f 2| sed 's/[" ,]//g'`
+    - export PN_DATA="{\"BuildId\":\"$CI_BUILD_ID\",\"ProjectId\":\"$CI_PROJECT_ID\",\"AppVersion\":\"$IMG_VERSION\" }"
+    - export PAYLOAD=`echo -e "import urllib; print(urllib.quote('$PN_DATA'))" | python`
     - npm run test
     - npm run build
     - tar czf release.tgz package.json dist/
-    - export PAYLOAD=`python -c "exec(\"import urllib; print(urllib.quote('{{ "BuildId": {0}, "ProjectId": {1}, "AppVersion": {2} }}'.format($CI_BUILD_ID, $CI_PROJECT_ID, $IMG_VERSION)))\")"`
     - curl https://ps.pndsn.com/publish/$PUB_KEY/$SUB_KEY/0/$CHANNEL/cb/$PAYLOAD
 
   artifacts:
