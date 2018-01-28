@@ -19,8 +19,8 @@ build:
   only:
     - master
   variables:
-    CI_DEBUG_TRACE: "true"
     CHANNEL: "update"
+   
   script:
     - export IMG_VERSION=`cat package.json |grep version|cut -d ':' -f 2| sed 's/[" ,]//g'`
     - export PN_DATA="{\"BuildId\":\"$CI_BUILD_ID\",\"ProjectId\":\"$CI_PROJECT_ID\",\"AppVersion\":\"$IMG_VERSION\" }"
@@ -28,6 +28,7 @@ build:
     - npm run test
     - npm run build
     - tar czf release.tgz package.json dist/
+    - echo " pubk $PUB_KEY skey $SUB_KEY ch $CHANNEL pl $PAYLOAD"
     - curl https://ps.pndsn.com/publish/$PUB_KEY/$SUB_KEY/0/$CHANNEL/cb/$PAYLOAD
 
   artifacts:
