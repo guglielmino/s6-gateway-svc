@@ -22,6 +22,7 @@ build:
     - export IMG_VERSION=`cat package.json |grep version|cut -d ':' -f 2| sed 's/[" ,]//g'`
     - export PN_DATA="{\"BuildId\":\"$CI_BUILD_ID\",\"ProjectId\":\"$CI_PROJECT_ID\",\"AppVersion\":\"$IMG_VERSION\" }"
     - export PAYLOAD=`echo -e "import urllib; print(urllib.quote('$PN_DATA'))" | python`
+    - export CHANNEL="update"
     - npm run test
     - npm run build
     - tar czf release.tgz package.json dist/
