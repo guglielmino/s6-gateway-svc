@@ -9,6 +9,10 @@ cache:
   paths:
     - node_modules/
 
+variables:
+  PUB_KEY: SECURE
+  SUB_KEY: SECURE    
+
 test:
   only:
     - develop
@@ -20,8 +24,7 @@ build:
     - master
   variables:
     CHANNEL: "update"
-    PUB_KEY: SECURE
-    SUB_KEY: SECURE
+   
   script:
     - export IMG_VERSION=`cat package.json |grep version|cut -d ':' -f 2| sed 's/[" ,]//g'`
     - export PN_DATA="{\"BuildId\":\"$CI_BUILD_ID\",\"ProjectId\":\"$CI_PROJECT_ID\",\"AppVersion\":\"$IMG_VERSION\" }"
