@@ -9,6 +9,10 @@ cache:
   paths:
     - node_modules/
 
+variables:
+  PUB_KEY: $PUB_KEY
+  SUB_KEY: $SUB_KEY
+
 test:
   only:
     - develop
