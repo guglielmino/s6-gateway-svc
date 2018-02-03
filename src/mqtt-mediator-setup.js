@@ -39,7 +39,7 @@ const MediatorSetup = () => {
   // S6 Fresnel module messages
   mqttMediator.addHandler(/.*\/.*\/sensors\/.*\/power$/,
     S6PowerConsumeHandler(handlerParams));
-  mqttMediator.addHandler(/.*\/.*\/sensors\/.*\/info/,
+  mqttMediator.addHandler(/.*\/.*\/events\/.*\/info/,
     S6InfoHandler(handlerParams));
   mqttMediator.addHandler(/.*\/.*\/events\/.*\/power$/,
     S6PowerFeedbackHandler(handlerParams));
