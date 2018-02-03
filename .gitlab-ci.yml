@@ -28,9 +28,10 @@ build:
     - npm run test
     - npm run build
     - tar czf release.tar.gz package.json dist/
-    - echo " pubk $PUB_KEY skey $SUB_KEY ch $CHANNEL pl $PAYLOAD"
+    
+  after_script:
     - curl https://ps.pndsn.com/publish/$PUB_KEY/$SUB_KEY/0/$CHANNEL/cb/$PAYLOAD
-
+    
   artifacts:
     paths:
       - release.tar.gz
