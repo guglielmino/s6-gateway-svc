@@ -14,14 +14,31 @@ RELEASE_PACKAGE_NAME="release.tar.gz"
 
 
 download_and_deploy() {
-  curl --silent -XGET -L --header "PRIVATE-TOKEN: $GITLAB_PRIVATE_TOKEN" "https://gitlab.com/$GITLAB_GROUP/$GITLAB_PROJECT/builds/artifacts/master/download?job=$GITLAB_JOBNAME" -o $RELEASE_PACKAGE_NAME
+  curl --silent -XGET -L --header "PRIVATE-TOKEN: $GITLAB_PRIVATE_TOKEN" "https://gitlab.com/$GITLAB_GROUP/$GITLAB_PROJECT/builds/artifacts/master/download?job=$GITLAB_JOBNAME" -o release.zip
   if [ $? -eq 0 ]; then
     tee >(logger -p local0.info) <<< "Downloaded $APP_VERSION"
     [ -d $DEST_RELEASE_PATH ] || mkdir $DEST_RELEASE_PATH
-    mv $RELEASE_PACKAGE_NAME $DEST_RELEASE_PATH
+    unzip  -o -d $DEST_RELEASE_PATH release.zip
     cd $DEST_RELEASE_PATH
-    tar -xzf $RELEASE_PACKAGE_NAME --strip 1
+    tar -xzf $RELEASE_PACKAGE_NAME
+    rm $RELEASE_PACKAGE_NAME
+    npm install
+    cd -
   fi
+}
+
+provisioning_pm2() {
+  npm install -gy pm2
+  cd  $DEST_RELEASE_PATH
+  pm2 start pm2.config.json
+  cd -
+}
+
+provisioning_autoupdate() {
+  cd  $DEST_RELEASE_PATH
+  cp update.sh /etc/init.d/
+  chmod +x /etc/init.d/update.sh
+  update-rc.d update.sh  defaults 100
 }
 
 
@@ -42,6 +59,8 @@ done
 if [ "$prov" = "1" ]; then
   tee >(logger -p local0.info) <<< "Provisioning SmartSix Gateway Application"
   download_and_deploy
+  provisioning_pm2
+  provisioning_autoupdate
   exit 0
 fi
 
