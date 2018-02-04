@@ -35,10 +35,10 @@ provisioning_pm2() {
 }
 
 provisioning_autoupdate() {
-  cd  $DEST_RELEASE_PATH
-  cp update.sh /etc/init.d/
-  chmod +x /etc/init.d/update.sh
-  update-rc.d update.sh  defaults 100
+  cd $DEST_RELEASE_PATH
+  cp s6-update-init /etc/init.d/
+  chmod +x /etc/init.d/s6-update-init
+  update-rc.d s6-update-init defaults 100
 }
 
 
