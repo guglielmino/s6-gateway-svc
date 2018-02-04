@@ -14,6 +14,7 @@ RELEASE_PACKAGE_NAME="release.tar.gz"
 
 
 download_and_deploy() {
+  command -v unzip >/dev/null 2>&1 || { apt-get update ; apt-get install -y unzip; }
   curl --silent -XGET -L --header "PRIVATE-TOKEN: $GITLAB_PRIVATE_TOKEN" "https://gitlab.com/$GITLAB_GROUP/$GITLAB_PROJECT/builds/artifacts/master/download?job=$GITLAB_JOBNAME" -o release.zip
   if [ $? -eq 0 ]; then
     tee >(logger -p local0.info) <<< "Downloaded $APP_VERSION"
@@ -31,20 +32,18 @@ provisioning_pm2() {
   npm install -gy pm2
   cd  $DEST_RELEASE_PATH
   pm2 start pm2.config.json
+  pm2 startup
   cd -
 }
 
-provisioning_autoupdate() {
-  cd $DEST_RELEASE_PATH
-  cp s6-update-init /etc/init.d/
-  chmod +x /etc/init.d/s6-update-init
-  update-rc.d s6-update-init defaults 100
+usage() {
+  echo "usage $0 [--provisioning]"
 }
 
 
 while [ "$1" != "" ]; do
     case $1 in
-        -p | --ing )            shift
+        -p | --provisioning )   shift
                                 prov=1
                                 ;;
         -h | --help )           usage
@@ -60,7 +59,6 @@ if [ "$prov" = "1" ]; then
   tee >(logger -p local0.info) <<< "Provisioning SmartSix Gateway Application"
   download_and_deploy
   provisioning_pm2
-  provisioning_autoupdate
   exit 0
 fi
 
@@ -70,8 +68,10 @@ do
   PAYLOAD=`curl --silent -m 1 http://p.pubnub.com/stream/$SUB_KEY/update/0/-1`
   if [ -n "$PAYLOAD" ]; then
     APP_VERSION=`node -e "console.log(JSON.parse('$PAYLOAD')[0][0].AppVersion)"`
-    tee >(logger -p local0.info) <<< "Downloading version $APP_VERSION"
+      if [ -n "$PAYLOAD" ]; then
+      tee >(logger -p local0.info) <<< "Downloading version $APP_VERSION"
 
-    download_and_deploy
+      download_and_deploy
+    fi
   fi
 done

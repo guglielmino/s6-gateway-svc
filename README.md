@@ -75,13 +75,13 @@ needed by the app.
 App variables are:
 
 
-NODE_ENV => 'development' or 'production, define the environment in wich app is running
-PUBNUB_PKEY => PubNub publish key
-PUBNUB_SKEY => PubNub subscribe key
-PUBNUB_PUB_CHANNEL => PubNub channel for publish events (normally is 'events')
-PUBNUB_SUB_CHANNEL => PubNub channel where commands are received, every gateway has a specific channel
-MQTT_URL => Url of the MQTT brocker
-GATEWAY_NAME='DevelopmentGateway'
+* NODE_ENV => 'development' or 'production', define the environment in which app is running
+* PUBNUB_PKEY => PubNub publish key
+* PUBNUB_SKEY => PubNub subscribe key
+* PUBNUB_PUB_CHANNEL => PubNub channel for publish events (typically is 'events')
+* PUBNUB_SUB_CHANNEL => PubNub channel where commands are received, every gateway has a specific channel
+* MQTT_URL => Url of the MQTT brocker (typically mqtt://127.0.0.1)
+* GATEWAY_NAME='DevelopmentGateway'
 
 ## Development
 
@@ -121,11 +121,14 @@ some environment variables to work properly, these have to be defined before run
 In Ubuntu OS system wide environment variables can be set in `/etc/environment`, this file is read at system boot but
 can be force read with `source /etc/environment`
 
-### Installation
+### Installation script
+
 
 To install the application download the `update.sh` from GitLab project repository and run it as below:
 
 `. ./update.sh -p`
+
+After the installation the application have to be fed with the environment variables as described in [Configuration](#Configuration)
 
 
 

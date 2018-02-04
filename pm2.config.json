@@ -1,15 +1,30 @@
 {
-  "apps" : [{
-    "name"          : "SmartSix Gateway",
-    "script"        : "npm",
-    "args" 	        : "start",
-    "watch"         : ["dist"],
-    "ignore_watch"  : ["dist/**/*.log"],
-    "env": {
-      "NODE_ENV": "development"
+  "apps": [
+    {
+      "name": "SmartSix Gateway",
+      "script": "npm",
+      "args": "start",
+      "watch": [
+        "dist"
+      ],
+      "ignore_watch": [
+        "dist/**/*.log"
+      ],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "env_production": {
+        "NODE_ENV": "production"
+      }
     },
-    "env_production" : {
-      "NODE_ENV": "production"
+    {
+      "name": "SmartSix Gateway Updater",
+      "script": "update.sh",
+      "interpreter": "bash",
+      "watch": true,
+      "ignore_watch": [
+        "dist/**/*"
+      ]
     }
-  }]
+  ]
 }
