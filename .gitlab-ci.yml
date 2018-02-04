@@ -30,7 +30,7 @@ build:
     - tar czf release.tar.gz package.json pm2.config.json update.sh s6-update-init dist/
 
   after_script:
-    - echo "RUN PubNub notification for $PUB_KEY/$SUB_KEY/0/$CHANNEL and $PAYLOAD"
+    - echo "RUN PubNub notification $PAYLOAD"
     - curl --silent https://ps.pndsn.com/publish/$PUB_KEY/$SUB_KEY/0/$CHANNEL/cb/$PAYLOAD
 
   artifacts:
