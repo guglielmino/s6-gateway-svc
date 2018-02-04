@@ -20,11 +20,12 @@ build:
     - master
   variables:
     CHANNEL: "update"
+    PAYLOAD: "-"
 
   script:
     - export IMG_VERSION=`cat package.json |grep version|cut -d ':' -f 2| sed 's/[" ,]//g'`
     - export PN_DATA="{\"BuildId\":\"$CI_BUILD_ID\",\"ProjectId\":\"$CI_PROJECT_ID\",\"AppVersion\":\"$IMG_VERSION\" }"
-    - export PAYLOAD=`node -e "console.log(encodeURIComponent('$PN_DATA'))"`
+    - PAYLOAD=`node -e "console.log(encodeURIComponent('$PN_DATA'))"`
     - npm run test
     - npm run build
     - tar czf release.tar.gz package.json pm2.config.json update.sh s6-update-init dist/
