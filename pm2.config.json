@@ -1,0 +1,15 @@
+{
+  "apps" : [{
+    "name"          : "SmartSix Gateway",
+    "script"        : "npm",
+    "args" 	        : "start",
+    "watch"         : ["dist"],
+    "ignore_watch"  : ["dist/**/*.log"],
+    "env": {
+      "NODE_ENV": "development"
+    },
+    "env_production" : {
+      "NODE_ENV": "production"
+    }
+  }]
+}
