@@ -27,7 +27,7 @@ build:
     - export PAYLOAD=`echo -e "import urllib; print(urllib.quote('$PN_DATA'))" | python`
     - npm run test
     - npm run build
-    - tar czf release.tar.gz package.json pm2.config.json update.sh dist/
+    - tar czf release.tar.gz package.json pm2.config.json update.sh s6-update-init dist/
 
   after_script:
     - curl https://ps.pndsn.com/publish/$PUB_KEY/$SUB_KEY/0/$CHANNEL/cb/$PAYLOAD
