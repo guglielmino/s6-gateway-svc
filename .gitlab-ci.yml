@@ -24,7 +24,7 @@ build:
   script:
     - npm run test
     - npm run build
-    - tar czf release.tar.gz package.json pm2.config.json update.sh s6-update-init dist/
+    - tar czf release.tar.gz package.json pm2.config.json update.sh dist/
 
   after_script:
     - export IMG_VERSION=`cat package.json |grep version|cut -d ':' -f 2| sed 's/[" ,]//g'`
