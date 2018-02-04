@@ -101,19 +101,16 @@ To work with the project some npm script are defined.
 Before installing the Application gateway follow pre-requisites must be met:
 
 * NodeJS >= 8.1.x
-* Pm2 (`npm install -g pm2`)
-
-Application default installation folder is `/opt/s6-gateway-app`, if it doen't exist must be created
+* Download `update.sh` script from project sources
 
 ### Environment variables
 
-Application update and deployment is managed by an update shell script. This script needs
+Application update and deployment is managed by `update.sh` shell script. This script needs
 some environment variables to work properly, these have to be defined before running the script itself.
 
-
 * SUB_KEY="PubNub subscription key for the 'update' channel, used to wait for update event"
-* GITLAB_PRIVATE_TOKEN="GitLab token for downloading release package"
-* GITLAB_GROUP="sGitLab group name the project belongs to"
+* GITLAB_PRIVATE_TOKEN="GitLab token for downloading release artifacts"
+* GITLAB_GROUP="GitLab group name the project belongs to"
 * GITLAB_PROJECT="GitLab project name"
 * GITLAB_JOBNAME="GitLab pipeline job name used to build the release"
 * DEST_RELEASE_PATH="Path where to deploy the application (default `/opt/s6-gateway-app`)
@@ -122,7 +119,6 @@ In Ubuntu OS system wide environment variables can be set in `/etc/environment`,
 can be force read with `source /etc/environment`
 
 ### Installation script
-
 
 To install the application download the `update.sh` from GitLab project repository and run it as below:
 
