@@ -67,8 +67,8 @@ while [ true ]
 do
   PAYLOAD=`curl --silent -m 1 http://p.pubnub.com/stream/$SUB_KEY/update/0/-1`
   if [ -n "$PAYLOAD" ]; then
-    APP_VERSION=`node -e "console.log(JSON.parse('$PAYLOAD')[0][0].AppVersion)"`
-      if [ -n "$PAYLOAD" ]; then
+    APP_VERSION=`node -e "try{console.log(JSON.parse('$PAYLOAD')[0][0].AppVersion); } catch(e){}"`
+    if [ -n "$APP_VERSION" ]; then
       tee >(logger -p local0.info) <<< "Downloading version $APP_VERSION"
 
       download_and_deploy
