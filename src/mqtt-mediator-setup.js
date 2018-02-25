@@ -18,14 +18,11 @@ import S6PowerFactorHandler from './networks/devices/s6fresnel/handlers/s6-power
 import S6ReactivePowerHandler from './networks/devices/s6fresnel/handlers/s6-reactive-power-handler';
 import S6VoltageHandler from './networks/devices/s6fresnel/handlers/s6-voltage-handler';
 
-import RestClient from './networks/http/rest-client';
+import httpPublisher from './networks/http/http-publisher';
 
 // TODO: refactor for testing (as in server code)
 const MediatorSetup = () => {
   const mqttMediator = EventsMediator();
-
-  const httpPublisher = payload => RestClient(config.gatewayName, config.api.key)
-    .post(`${config.api.url}events/`, payload);
 
   const envelope = MessageEnvelope(config.gatewayName);
 
