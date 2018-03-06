@@ -1,6 +1,6 @@
 {
   "name": "mqtt-ws-proxy",
-  "version": "v1.5.5",
+  "version": "v1.6.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -67,7 +67,7 @@
     "pre-commit": "^1.2.2",
     "proxyquire": "^1.7.10",
     "sinon": "^1.17.6",
-    "validate-commit-msg": "^2.14.0"
+    "validate-commit-msg": "^2.12.1"
   },
   "dependencies": {
     "daemon": "^1.1.0",

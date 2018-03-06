@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import * as pkg from '../package.json';
 import * as consts from './consts';
 import MqttHanlder from './mqtt-handler';
 import PubNubHandler from './pubnub-handler';
@@ -7,6 +8,9 @@ import MediatorSetup from './mqtt-mediator-setup';
 
 import config from './config';
 import logger from './logger';
+
+import MessageEnvelope from './networks/message-envelope';
+import httpPublisher from './networks/http/http-publisher';
 
 const pubNubHandler = PubNubHandler(config);
 const mqttHandler = MqttHanlder(config);
@@ -69,4 +73,14 @@ mqttHandler.on(consts.DEVENT_SRV_CONNECT, onSrvConnect);
 mqttHandler.on(consts.DEVENT_DEV_MESSAGE, onDeviceMessage);
 logger.log('info', 'starting up...');
 logger.log('debug', `MQTT subscribe ${_.last(config.mqtt.subscribe)}`);
+
+// Send Gateway info
+const envelope = MessageEnvelope(config.gatewayName);
+httpPublisher(envelope(consts.EVENT_GATEWAY_INFO,
+  {
+    version: pkg.version,
+    nodejs_version: process.version,
+  }),
+);
+
 mqttHandler.subscribe(_.last(config.mqtt.subscribe));
