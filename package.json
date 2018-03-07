@@ -1,6 +1,6 @@
 {
   "name": "mqtt-ws-proxy",
-  "version": "v1.6.0",
+  "version": "v1.7.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -74,7 +74,7 @@
     "dotenv": "^4.0.0",
     "lodash": "^4.17.2",
     "mqtt": "^2.0.1",
-    "pubnub": "^4.2.5",
+    "pubnub": "^4.20.2",
     "request": "^2.81.0",
     "request-promise": "^4.1.1",
     "winston": "^2.3.0"
