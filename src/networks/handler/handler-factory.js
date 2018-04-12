@@ -10,18 +10,10 @@
 
 import { TopicToType } from '../devices/topic-helper';
 
-
-const HandlerFactory = ({ publisher, envelope }) => ({ messageType, mapper }) => (msg) => {
-  const value = mapper(msg);
-  if (value) {
-    publisher(envelope(messageType, value));
-  }
-};
-
-const TopicHandlerFactory = ({ publisher, envelope }) => ({ mapper }) => (msg) => {
+const HandlerFactory = ({ publisher, envelope }) => ({ mapper }) => (msg) => {
   const value = mapper(msg);
   if (value) {
     publisher(envelope(TopicToType(msg.topic), value));
   }
 };
-export { HandlerFactory, TopicHandlerFactory };
+export { HandlerFactory }; // eslint-disable-line import/prefer-default-export

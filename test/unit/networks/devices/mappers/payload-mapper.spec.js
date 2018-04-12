@@ -7,7 +7,6 @@ chai.should();
 let expect = chai.expect;
 
 import  DevicePayloadapper from '../../../../../src/networks/devices/mappers/payload-mapper';
-import S6InfoMapper from "../../../../../src/networks/devices/s6fresnel/mappers/info-mapper";
 
 describe('Device Payload Mapper', () => {
 

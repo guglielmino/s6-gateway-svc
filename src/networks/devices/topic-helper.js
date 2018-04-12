@@ -1,4 +1,3 @@
-
 const TopicToDeviceId = (topic) => {
   const deviceIdre = RegExp(/.*\/.*\/(?:sensors|events)\/(.*)\/.*/, 'gi');
 
@@ -16,6 +15,7 @@ const TopicToType = (topic) => {
   if (resultTopic.length === 3) ret = `${resultTopic[1]}_${resultTopic[2]}`;
   return ret;
 };
+
 
 export { TopicToDeviceId, TopicToType };   // eslint-disable-line import/prefer-default-export
 
