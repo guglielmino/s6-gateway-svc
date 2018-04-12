@@ -16,9 +16,11 @@ import TelemetryMapper from './networks/devices/sonoff/mappers/telemetry-mapper'
 import EventsMediator from './networks/devices/events-mediator';
 import MessageEnvelope from './networks/message-envelope';
 
-import HandlerFactory from './networks/handler/handler-factory';
+import { HandlerFactory, TopicHandlerFactory } from './networks/handler/handler-factory';
 
 import httpPublisher from './networks/http/http-publisher';
+
+import DevicePayloadapper from './networks/devices/mappers/payload-mapper';
 
 // TODO: refactor for testing (as in server code)
 const MediatorSetup = () => {
@@ -26,6 +28,7 @@ const MediatorSetup = () => {
 
   const envelope = MessageEnvelope(config.gatewayName);
   const httpPublisherHandler = HandlerFactory({ publisher: httpPublisher, envelope });
+  const httpTopicPublisherHandler = TopicHandlerFactory({ publisher: httpPublisher, envelope });
 
   mqttMediator.addHandler(/^tele\/.*\/RESULT$/,
     httpPublisherHandler({
@@ -110,6 +113,11 @@ const MediatorSetup = () => {
     httpPublisherHandler({
       messageType: consts.EVENT_S6_VOLTAGE,
       mapper: S6SensorDataMapper,
+    }));
+
+  mqttMediator.addHandler(/.*\/.*\/(?:sensors|events)\/.*\/*./,
+    httpTopicPublisherHandler({
+      mapper: DevicePayloadapper,
     }));
 
   return mqttMediator;

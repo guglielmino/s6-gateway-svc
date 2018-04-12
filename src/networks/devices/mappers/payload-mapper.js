@@ -1,10 +1,10 @@
-import { TopicToDeviceId } from '../../topic-helper';
+import { TopicToDeviceId } from '../topic-helper';
 
 export default function (msg) {
   try {
     const deviceId = TopicToDeviceId(msg.topic);
     const resultMessage = JSON.parse(msg.message);
-    if (deviceId && resultMessage.status) {
+    if (deviceId) {
       return { topic: msg.topic, deviceId, ...resultMessage };
     }
   } catch (e) {  // eslint-disable-lint  no-empty

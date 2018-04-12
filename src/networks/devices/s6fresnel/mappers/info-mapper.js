@@ -1,4 +1,4 @@
-import { TopicToDeviceId } from './topic-helper';
+import { TopicToDeviceId } from '../../topic-helper';
 
 export default function (msg) {
   try {
