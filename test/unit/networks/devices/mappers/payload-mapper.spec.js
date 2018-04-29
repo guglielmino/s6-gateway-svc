@@ -35,4 +35,16 @@ describe('Device Payload Mapper', () => {
     result.location.should.be.eq('room1');
   });
 
+  it('should map an array pauload a items array', () => {
+    const msg = {
+      topic: 'building/room1/sensors/24:0a:c4:03:b6:74/info',
+      message: '[{ "name": "first"}, { "name": "second"} ]'
+    };
+    const result = DevicePayloadapper(msg);
+
+    result.deviceId.should.be.eq('24:0a:c4:03:b6:74');
+    result.items.should.be.an('array');
+    result.items.length.should.be.eq(2);
+  });
+
 });

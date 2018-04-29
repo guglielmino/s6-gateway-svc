@@ -20,8 +20,8 @@ export default function (config) {
     eventEmitter.emit(consts.DEVENT_SRV_ERROR);
   });
 
-  client.on('message', (topic, message, packet) => {
-    logger.log('debug', 'message', { topic, message, packet });
+  client.on('message', (topic, message, packet) => {  // eslint-disable-line no-unused-vars
+    logger.log('debug', 'message', { topic, message: message.toString() });
     eventEmitter.emit(consts.DEVENT_DEV_MESSAGE, { topic, message: message.toString() });
   });
 
