@@ -28,4 +28,7 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+# Update the change log
+npm run changelog
+
 exit 0

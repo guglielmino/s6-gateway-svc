@@ -49,23 +49,20 @@ This is a list of custom messages sent and received to/from Web Dashboard.
 
 #### Energy
 
-This message is sent from devices to give feedback on consumption and other enery parameters.
+This message is sent from devices with data about power consumption.
 
-        {
-          "GatewayId": "Negozio1",
-          "Type": "ENERGY",
-          "Payload": {
-            "DeviceId": "tele/sonoff/TELEMETRY",
-            "Yesterday": "0.000",
-            "Today": "0.000",
-            "Period": 0,
-            "Power": 0,
-            "Factor": "0.00",
-            "Voltage": 0,
-            "Current": "0.000",
-            "Time": "2016-12-10T15:08:42"
-          }
-        }
+        
+    {  
+      "GatewayId":"CASAFG",
+      "Type":"sensors_power",
+      "Payload":{  
+        "topic":"building/room1/sensors/00:11:22:33:44:55/power",
+        "deviceId":"00:11:22:33:44:55",
+        "timestamp":"2017-08-27T07:56:23.642Z",
+        "value":9
+      }
+    }
+
 
 ## Configuration
 
