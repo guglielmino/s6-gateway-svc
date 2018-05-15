@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --compilers js:babel-register 'test/unit/**/*.spec.js'",
+    "test": "better-npm-run test",
     "test:e2e": "mocha --compilers js:babel-register 'test/e2e/**/*.spec.js'",
     "build": "babel src/ --out-dir dist --source-maps",
     "clean": "find ./dist -name *.js -type f -delete",
@@ -16,6 +16,21 @@
     "validate-commit": "validate-commit-msg",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "commit": "git-cz"
+  },
+  "betterScripts": {
+    "test": {
+      "command": "mocha",
+      "env": {
+        "PUBNUB_PUB_CHANNEL": "events",
+        "PUBNUB_SUB_CHANNEL": "GWCODE",
+        "PUBNUB_PKEY": "pubnub-publish-key",
+        "PUBNUB_SKEY": "pubnub-sub-key",
+        "MQTT_URL": "mqtt://127.0.0.1",
+        "GATEWAY_NAME": "GWCODE",
+        "API_URL": "http://127.0.0.1:8090/api/",
+        "API_KEY": "GWAPIKEY"
+      }
+    }
   },
   "config": {
     "commitizen": {
@@ -57,6 +72,7 @@
     "babel-preset-es2015-node6": "^0.3.0",
     "babel-preset-stage-0": "^6.16.0",
     "babel-register": "^6.18.0",
+    "better-npm-run": "^0.1.0",
     "chai": "^3.5.0",
     "commitizen": "^2.9.6",
     "eslint": "^3.17.1",
