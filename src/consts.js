@@ -15,3 +15,8 @@ export const EVENT_GATEWAY_INFO = 'INFO_GATEWAY';
 
 // Commands
 export const CMD_DEVICE_LIST = 'DEVICE_LIST';
+
+// Special root topics
+export const ROOT_TOPIC_LEGACY = 'building';
+export const ROOT_TOPIC_LOCAL = 'local';
+

@@ -20,11 +20,8 @@ const config = {
   mqtt: {
     url: process.env.MQTT_URL || 'mqtt://127.0.0.1',
     subscribe: [
-      'cmnd/#',
-      'stat/#',
-      'tele/#',
-      'building/+/sensors/+/+',
-      'building/+/events/+/+'],
+      '+/+/sensors/+/+',
+      '+/+/events/+/+'],
   },
   pubnub: {
     publishKey: process.env.PUBNUB_PKEY,
