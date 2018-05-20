@@ -47,7 +47,7 @@ dockerimage:
   only:
     - tags
     - v_\d+.\d+.\d+
-  scripts:
+  script:
     - export IMG_VERSION=`cat package.json |grep \"version\"|cut -d ':' -f 2| sed 's/[" ,]//g'`
     - export CI_PROJECT_NAMESPACE=`echo $CI_PROJECT_NAMESPACE | tr '[A-Z]' '[a-z]'`
     - export CI_PROJECT_NAME=`echo $CI_PROJECT_NAME | tr '[A-Z]' '[a-z]'`
