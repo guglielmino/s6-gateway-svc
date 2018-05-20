@@ -35,4 +35,22 @@ describe('PubNubDynamicSubscriber', () => {
     pubnub.subscribe.calledOnce.should.be.true;
   });
 
+  it('Should not call subscribe if root topic starts with \'building\'', () => {
+    const topic = 'building/room1/sensors/esp32_03B674/reactivepower';
+
+    subject.handleTopic(topic);
+    subject.handleTopic(topic);
+
+    pubnub.subscribe.calledOnce.should.be.false;
+  });
+
+  it('Should not call subscribe if root topic starts with \'local\'', () => {
+    const topic = 'local/room1/sensors/esp32_03B674/reactivepower';
+
+    subject.handleTopic(topic);
+    subject.handleTopic(topic);
+
+    pubnub.subscribe.calledOnce.should.be.false;
+  });
+
 });

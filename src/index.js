@@ -71,10 +71,9 @@ function onNetworkStatus(status) {
 }
 
 logger.log('info', `Subscribe PubNub channel '${config.pubnub.sub_channel}'`);
+
 // PubNub
 pubNubHandler.subscribe(config.pubnub.sub_channel);
-
-
 pubNubHandler.on(consts.NEVENT_MESSAGE, onNetworkMessage);
 pubNubHandler.on(consts.NEVENT_STATUS, onNetworkStatus);
 
