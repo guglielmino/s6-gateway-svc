@@ -3,6 +3,7 @@ import * as pkg from '../package.json';
 import * as consts from './consts';
 import MqttHanlder from './mqtt-handler';
 import PubNubHandler from './pubnub-handler';
+import PubNubDynamicSubscriber from './pubnub-dynamic-subscriber';
 
 import MediatorSetup from './mqtt-mediator-setup';
 
@@ -15,12 +16,13 @@ import httpPublisher from './networks/http/http-publisher';
 const pubNubHandler = PubNubHandler(config);
 const mqttHandler = MqttHanlder(config);
 const mqttMediator = MediatorSetup(pubNubHandler);
+const pubNubDynSub = PubNubDynamicSubscriber(pubNubHandler);
 
 /**
  * Event fired when MQTT server connection is ready
  */
 function onSrvConnect() {
-  logger.log('info', 'Connect!');
+  logger.log('info', 'MQTT connected!');
   _
     .dropRight(config.mqtt.subscribe)
     .forEach((topic) => {
@@ -30,11 +32,14 @@ function onSrvConnect() {
 }
 
 /**
- * Every time a local device (sonoff or other) send a message this
+ * Every time a local device send a message this
  * function receives it
  * @param message
  */
 function onDeviceMessage(msg) {
+  // Handle dynamic subscribe to PubNub based on topic root
+  pubNubDynSub.handleTopic(msg.topic);
+
   mqttMediator.handle(msg);
 }
 
@@ -66,9 +71,13 @@ function onNetworkStatus(status) {
 }
 
 logger.log('info', `Subscribe PubNub channel '${config.pubnub.sub_channel}'`);
+
+// PubNub
 pubNubHandler.subscribe(config.pubnub.sub_channel);
 pubNubHandler.on(consts.NEVENT_MESSAGE, onNetworkMessage);
 pubNubHandler.on(consts.NEVENT_STATUS, onNetworkStatus);
+
+// MQTT
 mqttHandler.on(consts.DEVENT_SRV_CONNECT, onSrvConnect);
 mqttHandler.on(consts.DEVENT_DEV_MESSAGE, onDeviceMessage);
 logger.log('info', 'starting up...');
