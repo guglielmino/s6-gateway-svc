@@ -72,13 +72,17 @@ needed by the app.
 App variables are:
 
 
-* NODE_ENV => 'development' or 'production', define the environment in which app is running
-* PUBNUB_PKEY => PubNub publish key
-* PUBNUB_SKEY => PubNub subscribe key
-* PUBNUB_PUB_CHANNEL => PubNub channel for publish events (typically is 'events')
-* PUBNUB_SUB_CHANNEL => PubNub channel where commands are received, every gateway has a specific channel
-* MQTT_URL => Url of the MQTT brocker (typically mqtt://127.0.0.1)
-* GATEWAY_NAME='DevelopmentGateway'
+* `NODE_ENV` => 'development' or 'production', define the environment in which app is running
+* `PUBNUB_SKEY` => PubNub subscribe key
+* `MQTT_URL` => Url of the MQTT brocker (typically mqtt://127.0.0.1)
+* `GATEWAY_NAME` => Gateway name 'DevelopmentGateway'
+* `API_URL` => API URL, production is https://ecms.smartsix.it/api/
+* `API_KEY` => api key to validate the request
+
+**Note**: `API_KEY` is validated against `GATEWAY_NAME`, `GATEWAY_NAME` and `API_KEY` are put in HTTP headers `x-s6-gatewayid` and
+`x-s6-auth-token` respectively. These two headers are used as credentials server side. 
+Gateway name can be deduced by device topic root (ie. `MYGW/room1/sensors/esp32_03B674/voltage` => MYGW as gateway) 
+but also in that case the request is validated against the `GATEWAY_NAME` and `API_KEY`. 
 
 ## Development
 
