@@ -6,7 +6,7 @@ import sinon from 'sinon';
 chai.should();
 let expect = chai.expect;
 
-import { TopicToDeviceId, TopicToType } from '../../../../src/networks/devices/topic-helper';
+import { TopicToDeviceId, TopicToType, TopicRoot } from '../../../../src/networks/devices/topic-helper';
 
 describe('topic helper', () => {
 
@@ -43,6 +43,24 @@ describe('topic helper', () => {
       const res = TopicToType(topic);
 
       res.should.be.eq('events_power');
+    });
+  });
+
+  context('TopicRoot', () => {
+    it('should returns building from a standard topic starting whit it', () => {
+      const topic = 'building/room1/sensors/00:11:22:33:44:55/dailyconsume';
+
+      const res = TopicRoot(topic);
+
+      res.should.be.eq('building');
+    });
+
+    it('should returns MYGW from topic with gateway as root', () => {
+      const topic = 'MYGW/room1/events/00:11:22:33:44:55/power';
+
+      const res = TopicRoot(topic);
+
+      res.should.be.eq('MYGW');
     });
   });
 
