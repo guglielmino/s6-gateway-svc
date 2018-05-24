@@ -34,15 +34,16 @@ describe('Handler factory', () => {
     it('should call publisher function on mapped message with envelope function', () => {
       const mapper = (msg) => msg.message;
       const publisher = sinon.spy();
-      const envelope = (type, value) => ({
-        GatewayId: 'AGW', Type: type, Payload: value,
+      const envelope = (gw, type, value) => ({
+        GatewayId: gw, Type: type, Payload: value,
       });
 
       const handler = HandlerFactory({publisher, envelope});
       handler({mapper})({
-        topic: 'building/room1/sensors/24:0a:c4:03:b6:74/info',
+        topic: 'AGW/room1/sensors/24:0a:c4:03:b6:74/info',
         message: JSON.parse('{"appName":"S6 Fresnel Module","version":"1.0.15","location":"room1"}')
       });
+
       publisher.calledWith(sinon.match({GatewayId: 'AGW'})).should.be.true;
       publisher.calledWith(sinon.match({Type: 'sensors_info'})).should.be.true;
       publisher.calledWith(sinon.match({Payload: sinon.match({appName: 'S6 Fresnel Module'})})).should.be.true;

@@ -1,9 +1,7 @@
 # Example file for file .env
-PUBNUB_PUB_CHANNEL=SAMPLE                               # Name of PubNub publish channel, same of GATEWAY_NAME
-PUBNUB_SUB_CHANNEL=events                               # Channel for senting message to server app (no more used)
-PUBNUB_PKEY=pub-c-12345678-1234-1234-1234-123456789123  # PubNub publish key
 PUBNUB_SKEY=sub-c-12345678-1234-1234-1234-123456789123  # Pubnub subscribe key
 MQTT_URL=mqtt://127.0.0.1                               # MQTT broker url, typically localhost but it could be external
 GATEWAY_NAME=SAMPLE                                     # Gateway name, used server side to identify it
-API_URL=http://www.smartsix.it/api/                     # Server API address
+API_URL=http://ecms.smartsix.it/api/                    # Server API address
 API_KEY=auth_key_1112344523232                          # Auth key for authorizing gateway events post to server
+

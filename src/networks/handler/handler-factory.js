@@ -8,12 +8,12 @@
  * @constructor
  */
 
-import { TopicToType } from '../devices/topic-helper';
+import { TopicToType, TopicRoot } from '../devices/topic-helper';
 
 const HandlerFactory = ({ publisher, envelope }) => ({ mapper }) => (msg) => {
   const value = mapper(msg);
   if (value) {
-    publisher(envelope(TopicToType(msg.topic), value));
+    publisher(envelope(TopicRoot(msg.topic), TopicToType(msg.topic), value));
   }
 };
 export { HandlerFactory }; // eslint-disable-line import/prefer-default-export

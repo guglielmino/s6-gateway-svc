@@ -1,21 +1,29 @@
 const TopicToDeviceId = (topic) => {
-  const deviceIdre = RegExp(/.*\/.*\/(?:sensors|events)\/(.*)\/.*/, 'gi');
+  const deviceIdRe = RegExp(/.*\/.*\/(?:sensors|events)\/(.*)\/.*/, 'gi');
 
   let ret = null;
-  const resultTopic = deviceIdre.exec(topic);
+  const resultTopic = deviceIdRe.exec(topic);
   if (resultTopic.length > 1) ret = resultTopic[1];
   return ret;
 };
 
 const TopicToType = (topic) => {
-  const deviceTypere = RegExp(/.*\/.*\/(sensors|events)\/.*\/(.*)/, 'gi');
+  const deviceTypeRe = RegExp(/.*\/.*\/(sensors|events)\/.*\/(.*)/, 'gi');
 
   let ret = null;
-  const resultTopic = deviceTypere.exec(topic);
+  const resultTopic = deviceTypeRe.exec(topic);
   if (resultTopic.length === 3) ret = `${resultTopic[1]}_${resultTopic[2]}`;
   return ret;
 };
 
+const TopicRoot = (topic) => {
+  let ret = null;
+  const topicRootRe = /(^[\w-:]+)\/.*\/.*\/.*\/*./i;
 
-export { TopicToDeviceId, TopicToType };   // eslint-disable-line import/prefer-default-export
+  const topicRoot = topicRootRe.exec(topic);
+  if (topicRoot.length > 1) ret = topicRoot[1];
+  return ret;
+};
+
+export { TopicToDeviceId, TopicToType, TopicRoot };
 
