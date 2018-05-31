@@ -1,5 +1,11 @@
 image: node:8
 
+services:
+  - docker:dind
+
+variables:
+  DOCKER_DRIVER: overlay2
+
 before_script:
   - npm install -y
 
@@ -31,8 +37,21 @@ build:
     - export PN_DATA="{\"BuildId\":\"$CI_BUILD_ID\",\"ProjectId\":\"$CI_PROJECT_ID\",\"AppVersion\":\"$IMG_VERSION\" }"
     - export PAYLOAD=`node -e "console.log(encodeURIComponent('$PN_DATA'))"`
     - echo "RUN PubNub notification $PAYLOAD"
-    - curl --silent https://ps.pndsn.com/publish/$PUB_KEY/$SUB_KEY/0/$CHANNEL/cb/$PAYLOAD
+    #- curl --silent https://ps.pndsn.com/publish/$PUB_KEY/$SUB_KEY/0/$CHANNEL/cb/$PAYLOAD
 
   artifacts:
     paths:
       - release.tar.gz
+
+dockerimage:
+  only:
+    - tags
+    - v_\d+.\d+.\d+
+  script:
+    - export IMG_VERSION=`cat package.json |grep \"version\"|cut -d ':' -f 2| sed 's/[" ,]//g'`
+    - export CI_PROJECT_NAMESPACE=`echo $CI_PROJECT_NAMESPACE | tr '[A-Z]' '[a-z]'`
+    - export CI_PROJECT_NAME=`echo $CI_PROJECT_NAME | tr '[A-Z]' '[a-z]'`
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+    - docker push registry.gitlab.com/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME:${IMG_VERSION}
+    - docker push registry.gitlab.com/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME:latest
+
