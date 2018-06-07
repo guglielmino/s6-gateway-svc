@@ -39,7 +39,7 @@ build:
     - export PN_DATA="{\"BuildId\":\"$CI_BUILD_ID\",\"ProjectId\":\"$CI_PROJECT_ID\",\"AppVersion\":\"$IMG_VERSION\" }"
     - export PAYLOAD=`node -e "console.log(encodeURIComponent('$PN_DATA'))"`
     - echo "RUN PubNub notification $PAYLOAD"
-    - curl --silent https://ps.pndsn.com/publish/$PUB_KEY/$SUB_KEY/0/$CHANNEL/cb/$PAYLOAD
+    #- curl --silent https://ps.pndsn.com/publish/$PUB_KEY/$SUB_KEY/0/$CHANNEL/cb/$PAYLOAD
 
   artifacts:
     paths:
