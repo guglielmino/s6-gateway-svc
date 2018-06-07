@@ -1,5 +1,5 @@
-<a name="3.2.1"></a>
-## [3.2.1](https://gitlab.com/SmartSix/s6-gateway-svc/compare/v3.1.0...v3.2.1) (2018-06-07)
+<a name="3.2.2"></a>
+## [3.2.2](https://gitlab.com/SmartSix/s6-gateway-svc/compare/v3.1.0...v3.2.2) (2018-06-07)
 
 
 
