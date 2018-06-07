@@ -16,12 +16,14 @@ cache:
     - node_modules/
 
 test:
+  image: node
   only:
     - develop
   script:
     - npm run test
 
 build:
+  image: node
   only:
     - master
   variables:
@@ -44,6 +46,7 @@ build:
       - release.tar.gz
 
 dockerimage:
+  image: docker
   only:
     - tags
     - v_\d+.\d+.\d+
