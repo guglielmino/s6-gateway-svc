@@ -1,3 +1,8 @@
+<a name="3.2.0"></a>
+# [3.2.0](https://gitlab.com/SmartSix/s6-gateway-svc/compare/v3.1.0...v3.2.0) (2018-06-07)
+
+
+
 <a name="3.1.0"></a>
 # [3.1.0](https://gitlab.com/SmartSix/s6-gateway-svc/compare/1.0.3...v3.1.0) (2018-06-07)
 
